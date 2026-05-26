@@ -48,7 +48,7 @@ export default function About() {
               </div>
               <div className="profile-photo-meta">
                 <h3>Tapesh Kumar Karkel</h3>
-                <span className="profile-photo-subtitle">Software Enthusiast & IoT Developer</span>
+                <span className="profile-photo-subtitle">Full Stack Developer</span>
               </div>
             </div>
 
