@@ -37,42 +37,43 @@ export default function About() {
         <h2 className="section-title">About Me</h2>
 
         <div className="about-content">
-          <div className="about-text glass-panel">
-            <div className="about-profile">
-              <div className="avatar-wrapper">
+          <div className="about-bio-row">
+            <div className="about-photo-col glass-panel">
+              <div className="profile-photo-wrapper">
                 <img 
                   src={avatarImg} 
                   alt="Tapesh Kumar Karkel" 
-                  className="profile-avatar"
+                  className="about-avatar-img"
                 />
               </div>
-              <div className="about-meta-text">
+              <div className="profile-photo-meta">
                 <h3>Tapesh Kumar Karkel</h3>
-                <span className="profile-subtitle">Software Engineer & IoT Developer</span>
+                <span className="profile-photo-subtitle">Software Enthusiast & IoT Developer</span>
               </div>
             </div>
 
-            <h3>Professional Summary</h3>
-            
-            <p>
-              I am a dedicated Computer Science student with a strong foundation in web development, IoT systems, and practical software design. My passion lies in constructing user-centric, responsive applications that bridge the gap between digital software interfaces and physical IoT hardware.
-            </p>
-            <p>
-              Currently expanding my capabilities in full-stack engineering, I enjoy building scalable architectures, integrating AI-driven features (like Gemini API integrations), and tackling real-world problem statements through clean, structured code.
-            </p>
-            <div className="summary-highlights">
-              <div className="highlight-item">
-                <Award className="highlight-icon" />
-                <div>
-                  <h4>Full Stack Development</h4>
-                  <p>Node.js, React, Express, MongoDB</p>
+            <div className="about-text-col glass-panel">
+              <h3>Professional Summary</h3>
+              <p>
+                I am a dedicated Computer Science student with a strong foundation in web development, IoT systems, and practical software design. My passion lies in constructing user-centric, responsive applications that bridge the gap between digital software interfaces and physical IoT hardware.
+              </p>
+              <p>
+                Currently expanding my capabilities in full-stack engineering, I enjoy building scalable architectures, integrating AI-driven features (like Gemini API integrations), and tackling real-world problem statements through clean, structured code.
+              </p>
+              <div className="summary-highlights">
+                <div className="highlight-item">
+                  <Award className="highlight-icon" />
+                  <div>
+                    <h4>Full Stack Development</h4>
+                    <p>Node.js, React, Express, MongoDB</p>
+                  </div>
                 </div>
-              </div>
-              <div className="highlight-item">
-                <BookOpen className="highlight-icon" />
-                <div>
-                  <h4>IoT Solutions</h4>
-                  <p>Sensors, microcontrollers, automated actions</p>
+                <div className="highlight-item">
+                  <BookOpen className="highlight-icon" />
+                  <div>
+                    <h4>IoT Solutions</h4>
+                    <p>Sensors, microcontrollers, automated actions</p>
+                  </div>
                 </div>
               </div>
             </div>

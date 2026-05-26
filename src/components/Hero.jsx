@@ -23,7 +23,7 @@ const LinkedinIcon = ({ size = 22 }) => (
 const ROLES = [
   'Full-Stack Developer',
   'IoT Enthusiast',
-  'Software Engineer',
+  'Software Enthusiast',
   'Problem Solver'
 ];
 
