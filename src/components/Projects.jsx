@@ -30,8 +30,8 @@ const PROJECTS = [
     icon: <Film size={24} />,
     live: false,
     year: '2024',
-    tags: ['Python', 'Streamlit', 'Machine Learning', 'TMDb API', 'HTML/CSS/JS'],
-    desc: 'A content-based movie recommendation system trained on the TMDb 5000 Movie Dataset (consisting of movies and credits CSV files) sourced from Kaggle. Developed the data preprocessing and recommendation model in a Jupyter Notebook, serialized the dataset using Pickle, and built a Streamlit application with custom HTML, CSS, and JavaScript styling.',
+    tags: ['Python', 'Streamlit', 'TMDb Dataset', 'Kaggle API', 'HTML/CSS/JS'],
+    desc: 'A content-based movie recommendation system built using the TMDb 5000 Movie Dataset from Kaggle. Coded the data preprocessing and recommendation model in a Jupyter Notebook, fetched data using the Kaggle API, serialized the model components using Pickle, and deployed the Streamlit application with a custom HTML/CSS/JS frontend.',
     githubUrl: 'https://github.com/Tapesh-01/Movie-Recommendation-System',
     liveUrl: null
   },
