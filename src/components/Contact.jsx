@@ -23,13 +23,22 @@ export default function Contact() {
     setLoading(true);
     setError(null);
 
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE";
+
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message
+        })
       });
 
       const data = await response.json();
@@ -40,11 +49,11 @@ export default function Contact() {
         // Reset success state after a few seconds
         setTimeout(() => setSubmitted(false), 5000);
       } else {
-        setError(data.message || 'Failed to send message. Please try again.');
+        setError(data.message || 'Failed to send message. Please check your Web3Forms access key.');
       }
     } catch (err) {
       console.error('Contact Form Submit Error:', err);
-      setError('Could not connect to the API server. Make sure the backend is running.');
+      setError('Could not connect to the form submission server. Please check your internet connection.');
     } finally {
       setLoading(false);
     }
