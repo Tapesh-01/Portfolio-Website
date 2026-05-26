@@ -1,5 +1,6 @@
 import React from 'react';
 import { GraduationCap, Calendar, Award, BookOpen } from 'lucide-react';
+import avatarImg from '../assets/avatar.png';
 import './About.css';
 
 const EDUCATION = [
@@ -37,6 +38,20 @@ export default function About() {
 
         <div className="about-content">
           <div className="about-text glass-panel">
+            <div className="about-profile">
+              <div className="avatar-wrapper">
+                <img 
+                  src={avatarImg} 
+                  alt="Tapesh Kumar Karkel" 
+                  className="profile-avatar"
+                />
+              </div>
+              <div className="about-meta-text">
+                <h3>Tapesh Kumar Karkel</h3>
+                <span className="profile-subtitle">Software Engineer & IoT Developer</span>
+              </div>
+            </div>
+
             <h3>Professional Summary</h3>
             
             <p>

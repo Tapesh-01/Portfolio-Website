@@ -1,12 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import avatarImg from '../assets/avatar.png';
 import './HeroVisual3D.css';
 
 export default function HeroVisual3D() {
   const canvasRef = useRef(null);
 
-  // WebGL background particles
+  // WebGL background particles and mesh
   useEffect(() => {
     if (!canvasRef.current) return;
 
@@ -61,10 +60,23 @@ export default function HeroVisual3D() {
     const particles = new THREE.Points(particleGeom, particleMat);
     scene.add(particles);
 
+    // Spinning 3D Wireframe Icosahedron Mesh
+    const wireGeom = new THREE.IcosahedronGeometry(0.85, 2);
+    const wireMat = new THREE.MeshBasicMaterial({
+      color: 0x00f0ff,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.35
+    });
+    const wireMesh = new THREE.Mesh(wireGeom, wireMat);
+    scene.add(wireMesh);
+
     let frameId;
     const animate = () => {
       frameId = requestAnimationFrame(animate);
       particles.rotation.z += 0.003;
+      wireMesh.rotation.y += 0.004;
+      wireMesh.rotation.x += 0.002;
       renderer.render(scene, camera);
     };
     animate();
@@ -84,6 +96,8 @@ export default function HeroVisual3D() {
       resizeObserver.disconnect();
       particleGeom.dispose();
       particleMat.dispose();
+      wireGeom.dispose();
+      wireMat.dispose();
       renderer.dispose();
     };
   }, []);
@@ -98,16 +112,7 @@ export default function HeroVisual3D() {
         <canvas ref={canvasRef} className="portal-canvas" />
       </div>
 
-      {/* Layer 2: Subject (Transparent Cutout Portrait) */}
-      <div className="parallax-subject-layer">
-        <img 
-          src={avatarImg} 
-          alt="Tapesh Kumar Karkel" 
-          className="subject-avatar"
-        />
-      </div>
-
-      {/* Layer 3: Foreground HUD Circular dashes */}
+      {/* Layer 2: Foreground HUD Circular dashes */}
       <div className="parallax-fg-layer">
         <div className="fg-hud-circle" />
         <div className="fg-hud-square" />
