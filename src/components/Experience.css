@@ -1,0 +1,147 @@
+.experience-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 900px;
+  margin: 2rem auto 0;
+}
+
+.experience-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: rgba(17, 19, 30, 0.25);
+  border-left: 4px solid var(--accent-purple);
+  padding: 2.5rem;
+  position: relative;
+  text-align: left;
+}
+
+.experience-card:hover {
+  border-left-color: var(--accent-cyan);
+}
+
+.exp-info {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.exp-icon-wrapper {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  color: var(--accent-cyan);
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.experience-card:hover .exp-icon-wrapper {
+  color: #ffffff;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+
+.exp-title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.exp-title-block h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.exp-meta {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.exp-company {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.exp-duration {
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  color: var(--accent-purple);
+  background: rgba(189, 0, 255, 0.08);
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid rgba(189, 0, 255, 0.15);
+}
+
+.exp-details {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding-left: 0.25rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.25rem;
+}
+
+.exp-details li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.bullet-icon {
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 576px) {
+  .experience-card {
+    padding: 1.5rem;
+  }
+  
+  .exp-info {
+    gap: 1rem;
+  }
+  
+  .exp-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+  }
+  
+  .exp-icon-wrapper svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .exp-title-block h3 {
+    font-size: 1.15rem;
+  }
+  
+  .exp-meta {
+    gap: 0.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
