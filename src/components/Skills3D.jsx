@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 
 const SKILLS = [
-  'JavaScript', 'C', 'Java', 'PHP', 'HTML', 'CSS',
-  'Node.js', 'Express.js', 'MongoDB', 'React',
-  'Git', 'GitHub', 'IoT', 'Express', 'Cloudinary',
-  'Gemini AI', 'IoT Sensors', 'REST APIs', 'SQL',
-  'Web Development', 'Nodemailer', 'Leaflet.js'
+  'JavaScript', 'TypeScript', 'React Native', 'Expo', 'React', 
+  'Node.js', 'Express.js', 'MongoDB', 'Socket.io', 'Firebase', 
+  'Supabase', 'Cloudinary', 'Git', 'GitHub', 'IoT', 
+  'C', 'Java', 'PHP', 'HTML', 'CSS', 'Gemini AI', 
+  'IoT Sensors', 'REST APIs', 'WebSockets'
 ];
 
 export default function Skills3D() {

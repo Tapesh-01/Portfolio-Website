@@ -7,27 +7,28 @@ const SKILL_CATEGORIES = [
     title: 'Programming Languages',
     skills: [
       { name: 'JavaScript', level: 90 },
+      { name: 'TypeScript', level: 85 },
       { name: 'Java', level: 80 },
       { name: 'C Language', level: 75 },
       { name: 'PHP', level: 70 }
     ]
   },
   {
-    title: 'Web Technologies',
+    title: 'Web & Mobile Stack',
     skills: [
-      { name: 'React.js', level: 85 },
-      { name: 'Node.js & Express', level: 80 },
-      { name: 'MongoDB', level: 82 },
+      { name: 'React.js & React Native', level: 88 },
+      { name: 'Node.js & Express', level: 82 },
+      { name: 'MongoDB & Databases', level: 80 },
       { name: 'HTML5 & CSS3', level: 90 }
     ]
   },
   {
-    title: 'Tools & Hardware',
+    title: 'Tools & Cloud Services',
     skills: [
       { name: 'Git & GitHub', level: 85 },
       { name: 'IoT Systems & Sensors', level: 80 },
-      { name: 'Project Deployment', level: 75 },
-      { name: 'REST APIs & Integration', level: 80 }
+      { name: 'Firebase & Supabase', level: 82 },
+      { name: 'Socket.io & WebSockets', level: 78 }
     ]
   }
 ];
