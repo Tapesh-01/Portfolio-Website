@@ -20,7 +20,7 @@ const PROJECTS = [
     year: '2025',
     tags: ['React Native', 'Expo Router', 'TypeScript', 'Node.js', 'MongoDB Atlas', 'Socket.io', 'Firebase FCM', 'Supabase', 'Cloudinary'],
     desc: 'A comprehensive full-stack student tiffin delivery ecosystem comprising a React Native mobile client powered by Expo SDK 56 & Router, a React.js/TypeScript admin web dashboard hosted on Vercel, and a Node.js/Express backend server hosted on Render. Features real-time order tracking & courier GPS coordinate mapping via Socket.io, push notifications through Firebase Cloud Messaging, secure authentication via JWT/BcryptJS, and cloud media hosting via Cloudinary.',
-    githubUrl: null,
+    githubUrl: 'https://github.com/Tapesh-01/TIffin-Delivery-App',
     liveUrl: 'https://tiffin-student-app.vercel.app/'
   },
   {
