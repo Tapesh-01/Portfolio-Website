@@ -3,8 +3,10 @@
   flex-direction: column;
   gap: 2.5rem;
   width: 100%;
-  max-width: 900px;
   margin: 2rem auto 0;
+  position: relative;
+  padding-left: 2rem;
+  border-left: 2px solid var(--bg-tertiary);
 }
 
 .experience-card {
@@ -12,14 +14,62 @@
   flex-direction: column;
   gap: 1.5rem;
   background: rgba(17, 19, 30, 0.25);
-  border-left: 4px solid var(--accent-purple);
   padding: 2.5rem;
   position: relative;
   text-align: left;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .experience-card:hover {
-  border-left-color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+}
+
+.experience-timeline-marker {
+  position: absolute;
+  left: -3.15rem;
+  top: 2rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  color: var(--accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.experience-timeline-marker.has-logo {
+  width: 4.5rem;
+  height: 4.5rem;
+  left: -4.25rem; /* Center the 4.5rem circle on the 2rem padded line */
+  top: 0.85rem; /* Adjust to align with header */
+  padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.timeline-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  padding: 2px;
+  mix-blend-mode: multiply; /* Helps remove light backgrounds for a clean cutout look */
+}
+
+.experience-card:hover .experience-timeline-marker {
+  border-color: var(--accent-cyan);
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
 }
 
 .exp-info {
@@ -143,5 +193,23 @@
     gap: 0.5rem;
     flex-direction: column;
     align-items: flex-start;
+  }
+  
+  .experience-cards {
+    padding-left: 1.5rem;
+  }
+  
+  .experience-timeline-marker {
+    left: -2.4rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    top: 1.5rem;
+  }
+  
+  .experience-timeline-marker.has-logo {
+    width: 3.5rem;
+    height: 3.5rem;
+    left: -3.25rem;
+    top: 0.65rem;
   }
 }

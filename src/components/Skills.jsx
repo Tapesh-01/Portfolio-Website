@@ -1,5 +1,6 @@
 import React from 'react';
 import Skills3D from './Skills3D';
+import ScrollReveal from './ScrollReveal';
 import './Skills.css';
 
 const SKILL_CATEGORIES = [
@@ -9,6 +10,7 @@ const SKILL_CATEGORIES = [
       { name: 'JavaScript', level: 90 },
       { name: 'TypeScript', level: 85 },
       { name: 'Java', level: 80 },
+      { name: 'SQL', level: 80 },
       { name: 'C Language', level: 75 },
       { name: 'PHP', level: 70 }
     ]
@@ -37,40 +39,46 @@ export default function Skills() {
   return (
     <section id="skills" className="skills-section section">
       <div className="skills-container container">
-        <h2 className="section-title">My Skills</h2>
+        <ScrollReveal>
+          <h2 className="section-title">My Skills</h2>
+        </ScrollReveal>
         
         <div className="skills-content">
           <div className="skills-lists">
             {SKILL_CATEGORIES.map((category, catIdx) => (
-              <div key={catIdx} className="skills-category glass-panel">
-                <h3>{category.title}</h3>
-                <div className="skills-items">
-                  {category.skills.map((skill, skillIdx) => (
-                    <div key={skillIdx} className="skill-item">
-                      <div className="skill-info">
-                        <span className="skill-name">{skill.name}</span>
-                        <span className="skill-percentage">{skill.level}%</span>
+              <ScrollReveal key={catIdx} delay={Math.min(catIdx * 0.1, 0.4)}>
+                <div className="skills-category glass-panel">
+                  <h3>{category.title}</h3>
+                  <div className="skills-items">
+                    {category.skills.map((skill, skillIdx) => (
+                      <div key={skillIdx} className="skill-item">
+                        <div className="skill-info">
+                          <span className="skill-name">{skill.name}</span>
+                          <span className="skill-percentage">{skill.level}%</span>
+                        </div>
+                        <div className="skill-bar-track">
+                          <div 
+                            className="skill-bar-fill" 
+                            style={{ width: `${skill.level}%` }}
+                          />
+                        </div>
                       </div>
-                      <div className="skill-bar-track">
-                        <div 
-                          className="skill-bar-fill" 
-                          style={{ width: `${skill.level}%` }}
-                        />
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
 
-          <div className="skills-visual glass-panel">
-            <h3>Interactive Cloud</h3>
-            <p className="visual-help">Hover & Drag to spin keywords</p>
-            <div className="skills-3d-container">
-              <Skills3D />
+          <ScrollReveal delay={0.2}>
+            <div className="skills-visual glass-panel">
+              <h3>Interactive Cloud</h3>
+              <p className="visual-help">Hover & Drag to spin keywords</p>
+              <div className="skills-3d-container">
+                <Skills3D />
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

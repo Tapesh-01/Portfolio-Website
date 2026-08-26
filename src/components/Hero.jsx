@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Mail, ArrowRight } from 'lucide-react';
 import Hero3D from './Hero3D';
 import HeroVisual3D from './HeroVisual3D';
+import ScrollReveal from './ScrollReveal';
 import './Hero.css';
 
 const GithubIcon = ({ size = 22 }) => (
@@ -87,52 +88,56 @@ export default function Hero() {
   return (
     <section id="home" className="hero-section section">
       <div className="hero-container container">
-        <div className="hero-content">
-          <div className="hero-content-3d-bg">
-            <Hero3D />
-          </div>
-          <div className="hero-badge">
-            <span className="badge-dot glow-animation"></span>
-            Available for Internships & Projects
-          </div>
-          <h1 className="hero-title">
-            Hi, I'm <span className="highlight-text">Tapesh Karkel</span>
-          </h1>
-          <h2 className="hero-subtitle">
-            I am a <span className="typing-text">{displayText}</span>
-            <span className="cursor-blink">|</span>
-          </h2>
-          <p className="hero-description">
-            Computer Science student at Bhilai Institute of Technology with expertise in full-stack web development, IoT systems, and building responsive, user-centric software solutions.
-          </p>
+        <ScrollReveal>
+          <div className="hero-content">
+            <div className="hero-content-3d-bg">
+              <Hero3D />
+            </div>
+            <div className="hero-badge">
+              <span className="badge-dot glow-animation"></span>
+              Available for Internships & Projects
+            </div>
+            <h1 className="hero-title">
+              Hi, I'm <span className="highlight-text">Tapesh Karkel</span>
+            </h1>
+            <h2 className="hero-subtitle">
+              I am a <span className="typing-text">{displayText}</span>
+              <span className="cursor-blink">|</span>
+            </h2>
+            <p className="hero-description">
+              Computer Science student at Bhilai Institute of Technology with expertise in full-stack web development, IoT systems, and building responsive, user-centric software solutions.
+            </p>
 
-          <div className="hero-actions">
-            <button onClick={() => scrollToSection('#projects')} className="btn-primary">
-              View Work <ArrowRight size={18} />
-            </button>
-            <button onClick={() => scrollToSection('#contact')} className="btn-secondary">
-              Contact Me <Mail size={18} />
-            </button>
-          </div>
+            <div className="hero-actions">
+              <button onClick={() => scrollToSection('#projects')} className="btn-primary">
+                View Work <ArrowRight size={18} />
+              </button>
+              <button onClick={() => scrollToSection('#contact')} className="btn-secondary">
+                Contact Me <Mail size={18} />
+              </button>
+            </div>
 
-          <div className="hero-socials">
-            <a href="https://github.com/Tapesh-01" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <GithubIcon size={22} />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <LinkedinIcon size={22} />
-            </a>
-            <a href="mailto:tapeshkarkel@gmail.com" aria-label="Email">
-              <Mail size={22} />
-            </a>
+            <div className="hero-socials">
+              <a href="https://github.com/Tapesh-01" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <GithubIcon size={22} />
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <LinkedinIcon size={22} />
+              </a>
+              <a href="mailto:tapeshkarkel@gmail.com" aria-label="Email">
+                <Mail size={22} />
+              </a>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
 
-        <div className="hero-visual">
-          <div className="hero-3d-wrapper">
-            <HeroVisual3D />
+        <ScrollReveal delay={0.2}>
+          <div className="hero-visual">
+            <div className="hero-3d-wrapper">
+              <HeroVisual3D />
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

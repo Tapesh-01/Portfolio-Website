@@ -292,3 +292,14 @@
     width: 100%;
   }
 }
+.timeline-marker.has-logo {
+  background: white;
+  border-color: var(--accent-cyan);
+  padding: 4px;
+}
+.timeline-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}

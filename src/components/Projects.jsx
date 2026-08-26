@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ExternalLink, Globe, Cpu, HeartPulse, Film, Smartphone } from 'lucide-react';
+import tiffinImage from '../assets/tiffin_project.png';
+import wanderlustImage from '../assets/wanderlust_project.png';
+import movieImage from '../assets/movie_project.jpg';
+import plantImage from '../assets/plant_watering_project.png';
 import './Projects.css';
 
 const GithubIcon = ({ size = 16 }) => (
@@ -16,8 +20,9 @@ const PROJECTS = [
     subtitle: 'Student Tiffin Delivery Ecosystem',
     category: 'full-stack',
     icon: <Smartphone size={24} />,
+    image: tiffinImage,
     live: true,
-    year: '2025',
+    year: '2026',
     tags: ['React Native', 'Expo Router', 'TypeScript', 'Node.js', 'MongoDB Atlas', 'Socket.io', 'Firebase FCM', 'Supabase', 'Cloudinary'],
     desc: 'A comprehensive full-stack student tiffin delivery ecosystem comprising a React Native mobile client powered by Expo SDK 56 & Router, a React.js/TypeScript admin web dashboard hosted on Vercel, and a Node.js/Express backend server hosted on Render. Features real-time order tracking & courier GPS coordinate mapping via Socket.io, push notifications through Firebase Cloud Messaging, secure authentication via JWT/BcryptJS, and cloud media hosting via Cloudinary.',
     githubUrl: 'https://github.com/Tapesh-01/TIffin-Delivery-App',
@@ -28,6 +33,7 @@ const PROJECTS = [
     subtitle: 'Airbnb-like Platform',
     category: 'full-stack',
     icon: <Globe size={24} />,
+    image: wanderlustImage,
     live: true,
     year: '2025',
     tags: ['Node.js', 'Express.js', 'MongoDB', 'Leaflet.js', 'Cloudinary', 'Gemini AI'],
@@ -40,6 +46,7 @@ const PROJECTS = [
     subtitle: 'Machine Learning Web Application',
     category: 'full-stack',
     icon: <Film size={24} />,
+    image: movieImage,
     live: false,
     year: '2024',
     tags: ['Python', 'Streamlit', 'TMDb Dataset', 'Kaggle API', 'HTML/CSS/JS'],
@@ -52,6 +59,7 @@ const PROJECTS = [
     subtitle: 'IoT Irrigation Solution',
     category: 'iot',
     icon: <Cpu size={24} />,
+    image: plantImage,
     live: false,
     year: '2024',
     tags: ['IoT', 'Soil Sensors', 'Automated Irrigation', 'Microcontrollers'],
@@ -72,6 +80,90 @@ const PROJECTS = [
     liveUrl: null
   }
 ];
+
+const ProjectCard = ({ project, idx }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+    return () => {
+      if (cardRef.current) observer.unobserve(cardRef.current);
+    };
+  }, []);
+
+  return (
+    <div 
+      ref={cardRef} 
+      className={`project-card glass-panel ${isVisible ? 'visible' : ''}`}
+      style={{ transitionDelay: `${Math.min(idx * 0.1, 0.5)}s` }}
+    >
+      <div className="project-timeline-marker">
+        {React.cloneElement(project.icon, { size: 18 })}
+      </div>
+
+      <div className="project-card-inner">
+        {project.image && (
+          <div className="project-image-col">
+            <img src={project.image} alt={project.title} className="project-feature-img" />
+          </div>
+        )}
+
+        <div className="project-content-col">
+          <div className="project-header">
+            <div className="project-title-area">
+              <h3>{project.title}</h3>
+              <h4>{project.subtitle}</h4>
+            </div>
+            
+            <div className="project-top-links">
+              {project.githubUrl && (
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="icon-link" aria-label="GitHub Repository">
+                  <GithubIcon size={20} />
+                </a>
+              )}
+              {project.liveUrl && (
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="icon-link primary" aria-label="Live Demo">
+                  <ExternalLink size={20} />
+                </a>
+              )}
+            </div>
+          </div>
+
+          <div className="project-desc">
+            <p>{project.desc}</p>
+          </div>
+
+          <div className="project-bottom">
+            <div className="project-tags">
+              {project.tags.map((tag, tIdx) => (
+                <span key={tIdx} className="project-tag">{tag}</span>
+              ))}
+            </div>
+            <div className="project-meta">
+              <span className="project-year">{project.year}</span>
+              {project.live && <span className="project-live-tag">Live</span>}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function Projects() {
   const [filter, setFilter] = useState('all');
@@ -108,44 +200,7 @@ export default function Projects() {
 
         <div className="projects-grid">
           {filteredProjects.map((project, idx) => (
-            <div key={idx} className="project-card glass-panel">
-              <div className="project-header">
-                <div className="project-icon-box">
-                  {project.icon}
-                </div>
-                <div className="project-meta">
-                  <span className="project-year">{project.year}</span>
-                  {project.live && <span className="project-live-tag">Live</span>}
-                </div>
-              </div>
-
-              <div className="project-body">
-                <h3>{project.title}</h3>
-                <h4>{project.subtitle}</h4>
-                <p>{project.desc}</p>
-              </div>
-
-              <div className="project-tags">
-                {project.tags.map((tag, tIdx) => (
-                  <span key={tIdx} className="project-tag">{tag}</span>
-                ))}
-              </div>
-
-              {(project.githubUrl || project.liveUrl) && (
-                <div className="project-links">
-                  {project.githubUrl && (
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="project-link-btn">
-                      <GithubIcon size={16} /> Code
-                    </a>
-                  )}
-                  {project.liveUrl && (
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="project-link-btn primary">
-                      <ExternalLink size={16} /> Live Demo
-                    </a>
-                  )}
-                </div>
-              )}
-            </div>
+            <ProjectCard key={project.title + idx} project={project} idx={idx} />
           ))}
         </div>
       </div>
