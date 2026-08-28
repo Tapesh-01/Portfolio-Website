@@ -74,7 +74,7 @@ export default function App() {
         <div className="container">
           <p>© {new Date().getFullYear()} Tapesh Kumar Karkel. All rights reserved.</p>
           <p style={{ marginTop: '0.5rem', fontSize: '0.8rem' }}>
-            Built with React, Vite, and Three.js
+            Built with React 19, Vite &amp; Modern CSS
           </p>
         </div>
       </footer>
