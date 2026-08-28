@@ -89,24 +89,14 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* 2. Sleek Clean Minimal Bottom Bar (Zero Redundancy) */}
-      <div className="footer-minimal-container container">
-        <div className="footer-minimal-content">
-          <div className="footer-minimal-brand">
-            <span className="brand-logo">&lt;TK /&gt;</span>
-            <span className="brand-name">Tapesh Kumar Karkel</span>
-          </div>
-
-          <div className="footer-minimal-info">
-            <p className="copyright-text">
-              © {new Date().getFullYear()} Tapesh Kumar Karkel. All rights reserved.
-            </p>
-            <span className="footer-dot">•</span>
-            <p className="built-with-text">
-              Built with <Heart size={12} className="heart-icon" /> using <strong>React 19, Vite &amp; Modern CSS</strong>
-            </p>
-          </div>
-        </div>
+      {/* 2. Original Clean Centered Bottom Bar */}
+      <div className="footer-bottom-bar container">
+        <p className="copyright-text">
+          © {new Date().getFullYear()} Tapesh Kumar Karkel. All rights reserved.
+        </p>
+        <p className="built-with-text">
+          Built with React 19, Vite &amp; Modern CSS
+        </p>
       </div>
     </footer>
   );
