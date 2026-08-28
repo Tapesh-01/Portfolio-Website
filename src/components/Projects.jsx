@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ExternalLink, Globe, Cpu, HeartPulse, Film, Smartphone } from 'lucide-react';
+import { ExternalLink, Globe, Cpu, HeartPulse, Film, Smartphone, Target, Layers, Play, Sparkles } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 import tiffinImage from '../assets/tiffin_project.png';
 import wanderlustImage from '../assets/wanderlust_project.png';
@@ -14,73 +14,168 @@ const GithubIcon = ({ size = 16 }) => (
   </svg>
 );
 
-
 const PROJECTS = [
   {
     title: 'My Tiffin App',
-    subtitle: 'Student Tiffin Delivery Ecosystem',
+    subtitle: 'Student Tiffin Delivery & Mess Logistics Ecosystem',
     category: 'full-stack',
     icon: <Smartphone size={24} />,
     image: tiffinImage,
+    videoUrl: null, // Ready for .mp4/.webm hover playback
     live: true,
     year: '2026',
-    tags: ['React Native', 'Expo Router', 'TypeScript', 'Node.js', 'MongoDB Atlas', 'Socket.io', 'Firebase FCM', 'Supabase', 'Cloudinary'],
-    desc: 'A comprehensive full-stack student tiffin delivery ecosystem comprising a React Native mobile client powered by Expo SDK 56 & Router, a React.js/TypeScript admin web dashboard hosted on Vercel, and a Node.js/Express backend server hosted on Render. Features real-time order tracking & courier GPS coordinate mapping via Socket.io, push notifications through Firebase Cloud Messaging, secure authentication via JWT/BcryptJS, and cloud media hosting via Cloudinary.',
+    problemSolved: 'Eliminates student mess coordination chaos, manual cash tallying, and delivery blindspots by centralizing recurring meal subscriptions, automated wallet ledgers, and live courier tracking into a single unified mobile ecosystem.',
+    keyArchitecture: 'Built a cross-platform React Native client with Expo SDK 56 & Expo Router, backed by Node.js/Express with real-time Socket.io GPS courier tracking, Firebase FCM push alerts, and secure JWT/Bcrypt authentication.',
+    tags: ['React Native', 'Expo Router', 'TypeScript', 'Node.js', 'Express.js', 'MongoDB Atlas', 'Socket.io', 'Firebase FCM', 'Supabase', 'Cloudinary'],
     githubUrl: 'https://github.com/Tapesh-01/TIffin-Delivery-App',
     liveUrl: 'https://tiffin-student-app.vercel.app/'
   },
   {
     title: 'Wanderlust',
-    subtitle: 'Airbnb-like Platform',
+    subtitle: 'Full-Stack Rental Marketplace with AI Chat Assistant',
     category: 'full-stack',
     icon: <Globe size={24} />,
     image: wanderlustImage,
+    videoUrl: null, // Ready for .mp4/.webm hover playback
     live: true,
     year: '2025',
-    tags: ['Node.js', 'Express.js', 'MongoDB', 'Leaflet.js', 'Cloudinary', 'Gemini AI'],
-    desc: 'A full-stack rental lodging platform. Features secure listings and bookings, dynamic map overlays with Leaflet.js, and an integrated AI chat assistant (WanderBot) built using Gemini AI to handle customer support inquiries.',
+    problemSolved: 'Solves friction in lodging discovery, host listing verification, and round-the-clock tenant support with dynamic spatial map overlays, verified bookings, and 24/7 AI-assisted customer triage.',
+    keyArchitecture: 'Engineered a scalable MVC lodging marketplace using Node.js & Express, MongoDB geocoding with Leaflet.js interactive maps, Cloudinary media CDN, and an integrated Gemini AI conversational assistant (WanderBot).',
+    tags: ['Node.js', 'Express.js', 'MongoDB', 'Leaflet.js', 'Cloudinary', 'Gemini AI', 'REST APIs', 'EJS/Bootstrap'],
     githubUrl: 'https://github.com/Tapesh-01/Wandurlust',
     liveUrl: 'https://wandurlust-31y0.onrender.com/'
   },
   {
     title: 'Movie Recommendation System',
-    subtitle: 'Machine Learning Web Application',
+    subtitle: 'Machine Learning Vector Similarity Engine',
     category: 'full-stack',
     icon: <Film size={24} />,
     image: movieImage,
+    videoUrl: null,
     live: false,
     year: '2024',
-    tags: ['Python', 'Streamlit', 'TMDb Dataset', 'Kaggle API', 'HTML/CSS/JS'],
-    desc: 'A content-based movie recommendation system built using the TMDb 5000 Movie Dataset from Kaggle. Coded the data preprocessing and recommendation model in a Jupyter Notebook, fetched data using the Kaggle API, serialized the model components using Pickle, and deployed the Streamlit application with a custom HTML/CSS/JS frontend.',
+    problemSolved: 'Solves content discovery fatigue and choice overload by computing vectorized cosine similarity across 5,000+ TMDb movie attributes to deliver personalized, high-precision recommendations based on genre, cast, and plot embeddings.',
+    keyArchitecture: 'Engineered an end-to-end ML data preprocessing pipeline in Jupyter Notebooks, serialized model similarity matrices via Pickle, and deployed a fast Streamlit web application with custom UI components.',
+    tags: ['Python', 'Machine Learning', 'Streamlit', 'TMDb 5000 API', 'Cosine Similarity', 'Pickle', 'Pandas & NumPy'],
     githubUrl: 'https://github.com/Tapesh-01/Movie-Recommendation-System',
     liveUrl: null
   },
   {
     title: 'Automatic Plant Watering System',
-    subtitle: 'IoT Irrigation Solution',
+    subtitle: 'IoT Irrigation Solution with Real-time Moisture Telemetry',
     category: 'iot',
     icon: <Cpu size={24} />,
     image: plantImage,
+    videoUrl: null,
     live: false,
     year: '2024',
-    tags: ['IoT', 'Soil Sensors', 'Automated Irrigation', 'Microcontrollers'],
-    desc: 'An automated plant watering system utilizing real-time soil moisture sensors. Leverages smart thresholds to trigger solenoid valves or pumps, delivering precise irrigation controls and preventing water wastage.',
+    problemSolved: 'Prevents plant dehydration and eliminates severe water wastage in precision agriculture by replacing manual watering with autonomous soil moisture telemetry and smart threshold-based pump activation.',
+    keyArchitecture: 'Designed an embedded hardware circuit interfacing analog capacitive soil moisture sensors with microcontroller logic and solenoid relay drivers for precision automated irrigation control.',
+    tags: ['IoT & Embedded', 'Soil Moisture Sensors', 'Microcontrollers (Arduino/ESP)', 'Relay Drivers', 'Hardware Prototyping'],
     githubUrl: null,
     liveUrl: null
   },
   {
     title: 'Sharda Medical Website',
-    subtitle: 'Pharmacy Pricing & Order Integration',
+    subtitle: 'Pharmacy Pricing Catalogue & Automated Order Bridge',
     category: 'full-stack',
     icon: <HeartPulse size={24} />,
+    image: null,
+    videoUrl: null,
     live: false,
     year: '2023',
-    tags: ['HTML', 'CSS', 'JavaScript', 'PHP', 'WhatsApp API'],
-    desc: 'A responsive pharmacy catalogue system. Enables users to browse inventories, compare drug pricing, and place direct ordering requests to the pharmacist via automated WhatsApp chat integrations.',
+    problemSolved: 'Eliminates retail pharmacy inquiry bottlenecks by providing a responsive digital drug catalogue with real-time pricing and automated one-tap WhatsApp prescription ordering.',
+    keyArchitecture: 'Developed a mobile-first pharmacy inventory catalogue with dynamic search filtering and direct API-linked WhatsApp prescription dispatch for fast fulfillment.',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'PHP', 'WhatsApp Business API', 'Responsive UI'],
     githubUrl: null,
     liveUrl: null
   }
 ];
+
+// Interactive Media Preview Component (Hover to Auto-Play Video / Mockup Viewport)
+const ProjectMedia = ({ project }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (project.videoUrl && videoRef.current) {
+      if (isHovered) {
+        videoRef.current.play().catch(() => {});
+      } else {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+      }
+    }
+  }, [isHovered, project.videoUrl]);
+
+  if (!project.image && !project.videoUrl) {
+    return (
+      <div className="project-image-col placeholder">
+        <div className="project-placeholder-content">
+          <div className="project-placeholder-icon">
+            {React.cloneElement(project.icon, { size: 42 })}
+          </div>
+          <h4>{project.title}</h4>
+          <span>{project.subtitle}</span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div 
+      className={`project-image-col ${isHovered ? 'hovered' : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Device / Browser Header Bar */}
+      <div className="project-mockup-bar">
+        <div className="mockup-dots">
+          <span className="dot red"></span>
+          <span className="dot yellow"></span>
+          <span className="dot green"></span>
+        </div>
+        <span className="mockup-url">{project.title.toLowerCase().replace(/\s+/g, '-')}.app</span>
+        {project.live && (
+          <span className="mockup-live-badge">
+            <span className="live-ping"></span> Live
+          </span>
+        )}
+      </div>
+
+      {/* Media Canvas (Video on hover if available, else static high-res poster) */}
+      <div className="project-media-wrapper">
+        {project.videoUrl ? (
+          <video
+            ref={videoRef}
+            src={project.videoUrl}
+            poster={project.image}
+            muted
+            loop
+            playsInline
+            preload="none"
+            className="project-feature-video"
+          />
+        ) : (
+          <img 
+            src={project.image} 
+            alt={project.title} 
+            className="project-feature-img" 
+            loading="lazy"
+          />
+        )}
+
+        {/* Subtle Video Hover Badge / Scanline */}
+        {project.videoUrl && (
+          <div className="video-hover-indicator">
+            <Play size={12} className="play-icon" />
+            <span>Hover to preview</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 const ProjectCard = ({ project, idx }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -118,46 +213,112 @@ const ProjectCard = ({ project, idx }) => {
       </div>
 
       <div className="project-card-inner">
-        {project.image && (
-          <div className="project-image-col">
-            <img src={project.image} alt={project.title} className="project-feature-img" />
-          </div>
-        )}
+        {/* Left Column: Interactive Media (Video / Mockup Viewport) */}
+        <ProjectMedia project={project} />
 
+        {/* Right Column: Structured Engineering Details */}
         <div className="project-content-col">
+          {/* Header Row: Title, Category & Top Link Icons */}
           <div className="project-header">
             <div className="project-title-area">
-              <h3>{project.title}</h3>
-              <h4>{project.subtitle}</h4>
+              <div className="project-category-pill">
+                <span className="pill-dot"></span>
+                <span>{project.category.toUpperCase()}</span>
+                <span className="pill-divider">•</span>
+                <span>{project.year}</span>
+              </div>
+              <h3 className="project-main-title">{project.title}</h3>
+              <h4 className="project-subtitle-text">{project.subtitle}</h4>
             </div>
             
             <div className="project-top-links">
               {project.githubUrl && (
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="icon-link" aria-label="GitHub Repository">
-                  <GithubIcon size={20} />
+                <a 
+                  href={project.githubUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="icon-link" 
+                  aria-label="GitHub Repository"
+                  title="View GitHub Repository"
+                >
+                  <GithubIcon size={18} />
                 </a>
               )}
               {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="icon-link primary" aria-label="Live Demo">
-                  <ExternalLink size={20} />
+                <a 
+                  href={project.liveUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="icon-link primary" 
+                  aria-label="Live Demo"
+                  title="Open Live Web Application"
+                >
+                  <ExternalLink size={18} />
                 </a>
               )}
             </div>
           </div>
 
-          <div className="project-desc">
-            <p>{project.desc}</p>
+          {/* Structured Block 1: 🎯 Problem Solved */}
+          <div className="project-problem-box">
+            <div className="box-header">
+              <Target size={15} className="box-icon" />
+              <span>PROBLEM SOLVED</span>
+            </div>
+            <p className="box-text">{project.problemSolved}</p>
           </div>
 
-          <div className="project-bottom">
-            <div className="project-tags">
-              {project.tags.map((tag, tIdx) => (
-                <span key={tIdx} className="project-tag">{tag}</span>
-              ))}
+          {/* Structured Block 2: ⚡ Core Architecture */}
+          {project.keyArchitecture && (
+            <div className="project-architecture-box">
+              <div className="box-header">
+                <Sparkles size={15} className="box-icon" />
+                <span>KEY ARCHITECTURE &amp; INNOVATION</span>
+              </div>
+              <p className="box-text">{project.keyArchitecture}</p>
             </div>
-            <div className="project-meta">
-              <span className="project-year">{project.year}</span>
-              {project.live && <span className="project-live-tag">Live</span>}
+          )}
+
+          {/* Structured Block 3: 🛠️ Tech Stack & Direct Actions */}
+          <div className="project-footer-area">
+            <div className="project-tags-section">
+              <div className="tags-label">
+                <Layers size={13} />
+                <span>TECH STACK USED</span>
+              </div>
+              <div className="project-tags">
+                {project.tags.map((tag, tIdx) => (
+                  <span key={tIdx} className="project-tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Direct Action Buttons */}
+            <div className="project-action-buttons">
+              {project.githubUrl && (
+                <a 
+                  href={project.githubUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="project-action-btn secondary"
+                >
+                  <GithubIcon size={15} />
+                  <span>Source Code</span>
+                </a>
+              )}
+
+              {project.liveUrl && (
+                <a 
+                  href={project.liveUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="project-action-btn primary"
+                >
+                  <span className="btn-ping-dot"></span>
+                  <ExternalLink size={15} />
+                  <span>Live Demo</span>
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -181,7 +342,7 @@ export default function Projects() {
             <span className="section-eyebrow">// 04. FEATURED WORK</span>
             <h2 className="section-title">Academic <span className="gradient-text">Projects</span></h2>
             <p className="section-subtitle">
-              End-to-end full-stack applications, mobile ecosystems, ML models, and IoT hardware prototypes.
+              Engineered end-to-end full-stack applications, mobile ecosystems, ML recommendation models, and IoT hardware solutions.
             </p>
           </div>
         </ScrollReveal>
