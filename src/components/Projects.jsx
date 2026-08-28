@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ExternalLink, Globe, Cpu, HeartPulse, Film, Smartphone, Target, Layers, Play, Sparkles } from 'lucide-react';
+import { ExternalLink, Globe, Cpu, HeartPulse, Film, Smartphone, Target, Layers, Play, Sparkles, ZoomIn, X } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 import tiffinImage from '../assets/tiffin_project.png';
 import wanderlustImage from '../assets/wanderlust_project.png';
@@ -92,8 +92,8 @@ const PROJECTS = [
   }
 ];
 
-// Interactive Media Preview Component (Hover to Auto-Play Video / Mockup Viewport)
-const ProjectMedia = ({ project }) => {
+// Interactive Media Preview Component (Hover to Blur & Zoom Fullscreen / Auto-Play Video)
+const ProjectMedia = ({ project, onViewImage }) => {
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef(null);
 
@@ -143,8 +143,13 @@ const ProjectMedia = ({ project }) => {
         )}
       </div>
 
-      {/* Media Canvas (Video on hover if available, else static high-res poster) */}
-      <div className="project-media-wrapper">
+      {/* Media Canvas with Hover Blur Overlay & Zoom Button */}
+      <div 
+        className="project-media-wrapper"
+        onClick={() => project.image && onViewImage(project)}
+        title={project.image ? "Click to view full image" : project.title}
+        style={{ cursor: project.image ? 'pointer' : 'default' }}
+      >
         {project.videoUrl ? (
           <video
             ref={videoRef}
@@ -165,11 +170,12 @@ const ProjectMedia = ({ project }) => {
           />
         )}
 
-        {/* Subtle Video Hover Badge / Scanline */}
-        {project.videoUrl && (
-          <div className="video-hover-indicator">
-            <Play size={12} className="play-icon" />
-            <span>Hover to preview</span>
+        {/* Hover Blur Overlay with Centered View Button */}
+        {project.image && (
+          <div className="project-image-overlay">
+            <span className="project-zoom-btn">
+              <ZoomIn size={18} /> View Image
+            </span>
           </div>
         )}
       </div>
@@ -177,7 +183,7 @@ const ProjectMedia = ({ project }) => {
   );
 };
 
-const ProjectCard = ({ project, idx }) => {
+const ProjectCard = ({ project, idx, onViewImage }) => {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef(null);
 
@@ -213,8 +219,8 @@ const ProjectCard = ({ project, idx }) => {
       </div>
 
       <div className="project-card-inner">
-        {/* Left Column: Interactive Media (Video / Mockup Viewport) */}
-        <ProjectMedia project={project} />
+        {/* Left Column: Interactive Media (Video / Mockup Viewport with Blur & View button) */}
+        <ProjectMedia project={project} onViewImage={onViewImage} />
 
         {/* Right Column: Structured Engineering Details */}
         <div className="project-content-col">
@@ -329,6 +335,7 @@ const ProjectCard = ({ project, idx }) => {
 
 export default function Projects() {
   const [filter, setFilter] = useState('all');
+  const [activeProjectImage, setActiveProjectImage] = useState(null);
 
   const filteredProjects = filter === 'all' 
     ? PROJECTS 
@@ -370,10 +377,40 @@ export default function Projects() {
 
         <div className="projects-grid">
           {filteredProjects.map((project, idx) => (
-            <ProjectCard key={project.title + idx} project={project} idx={idx} />
+            <ProjectCard 
+              key={project.title + idx} 
+              project={project} 
+              idx={idx} 
+              onViewImage={(p) => setActiveProjectImage(p)}
+            />
           ))}
         </div>
       </div>
+
+      {/* Interactive Lightbox / Modal for Full-Size Project Image View */}
+      {activeProjectImage && (
+        <div className="project-modal-overlay" onClick={() => setActiveProjectImage(null)}>
+          <div className="project-modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="project-modal-header">
+              <h3>{activeProjectImage.title} - Preview</h3>
+              <button 
+                className="project-modal-close"
+                onClick={() => setActiveProjectImage(null)}
+                aria-label="Close image preview"
+              >
+                <X size={22} />
+              </button>
+            </div>
+            <div className="project-modal-body">
+              <img 
+                src={activeProjectImage.image} 
+                alt={`${activeProjectImage.title} Preview Full`} 
+                className="project-modal-img"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
