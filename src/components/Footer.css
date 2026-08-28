@@ -1,4 +1,4 @@
-﻿/* === Modern Footer with Infinite Glowing Tech Ribbon === */
+/* === Modern Footer with Infinite Glowing Tech Ribbon === */
 .portfolio-footer {
   position: relative;
   z-index: 20;
@@ -107,177 +107,49 @@
   }
 }
 
-/* === 2. Main Footer Grid === */
-.footer-main-container {
-  padding: 4rem 2rem 2.5rem 2rem;
+/* === 2. Minimal Bottom Bar (Zero Duplicate Links/Bio) === */
+.footer-minimal-container {
+  padding: 1.8rem 2rem;
 }
 
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.8fr 1fr 1fr;
-  gap: 3.5rem;
-  margin-bottom: 3.5rem;
+.footer-minimal-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
 }
 
-/* Col 1: Bio & Status */
-.footer-brand {
+.footer-minimal-brand {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 1rem;
 }
 
 .brand-logo {
   font-family: var(--font-mono);
   font-weight: 800;
-  font-size: 1.15rem;
+  font-size: 1rem;
   color: var(--accent-cyan);
   background: rgba(0, 240, 255, 0.1);
-  padding: 0.3rem 0.65rem;
-  border-radius: 8px;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
   border: 1px solid rgba(0, 240, 255, 0.25);
 }
 
-.brand-title {
-  font-size: 1.35rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  margin: 0;
-  font-family: var(--font-heading);
-  letter-spacing: -0.02em;
-}
-
-.footer-bio {
-  font-size: 0.92rem;
-  color: var(--text-secondary);
-  line-height: 1.65;
-  margin-bottom: 1.4rem;
-  max-width: 440px;
-}
-
-.footer-status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(55, 255, 139, 0.08);
-  border: 1px solid rgba(55, 255, 139, 0.25);
-  color: #37FF8B;
-  padding: 0.35rem 0.85rem;
-  border-radius: 50px;
-  font-size: 0.76rem;
+.brand-name {
+  font-size: 1.05rem;
   font-weight: 700;
-  font-family: var(--font-mono);
-}
-
-.status-ping {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #37FF8B;
-  box-shadow: 0 0 8px #37FF8B;
-  animation: pulse-glow 1.5s infinite;
-}
-
-/* Col 2: Navigation */
-.footer-heading {
-  font-size: 1rem;
-  font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-family: var(--font-mono);
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
 }
 
-.footer-nav-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.footer-minimal-info {
   display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-
-.footer-nav-list a {
-  color: var(--text-secondary);
-  font-size: 0.92rem;
-  font-weight: 500;
-  transition: all 0.25s ease;
-  display: inline-flex;
   align-items: center;
-}
-
-.footer-nav-list a:hover {
-  color: var(--accent-cyan);
-  transform: translateX(4px);
-}
-
-/* Col 3: Social & Action Links */
-.footer-social-links {
-  display: flex;
-  flex-direction: column;
   gap: 0.75rem;
-}
-
-.footer-social-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  padding: 0.6rem 1.1rem;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--text-primary);
-  font-size: 0.88rem;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  font-family: inherit;
-  width: fit-content;
-}
-
-.footer-social-btn:hover {
-  background: rgba(0, 240, 255, 0.12);
-  border-color: var(--accent-cyan);
-  color: #ffffff;
-  box-shadow: 0 4px 15px rgba(0, 240, 255, 0.25);
-  transform: translateY(-2px);
-}
-
-.footer-social-btn.linkedin:hover {
-  background: rgba(10, 102, 194, 0.18);
-  border-color: #0a66c2;
-  box-shadow: 0 4px 15px rgba(10, 102, 194, 0.3);
-}
-
-.footer-social-btn.email:hover {
-  background: rgba(234, 67, 53, 0.15);
-  border-color: #ea4335;
-  box-shadow: 0 4px 15px rgba(234, 67, 53, 0.3);
-}
-
-.footer-social-btn.resume-btn {
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.15) 0%, rgba(189, 0, 255, 0.15) 100%);
-  border-color: rgba(0, 240, 255, 0.3);
-  color: var(--accent-cyan);
-}
-
-.footer-social-btn.resume-btn:hover {
-  background: var(--accent-cyan);
-  color: #0a0b10;
-  box-shadow: 0 4px 20px rgba(0, 240, 255, 0.4);
-}
-
-/* === 3. Bottom Bar === */
-.footer-bottom-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
   flex-wrap: wrap;
-  gap: 1rem;
 }
 
 .copyright-text {
@@ -286,10 +158,15 @@
   margin: 0;
 }
 
+.footer-dot {
+  color: var(--text-muted);
+  opacity: 0.4;
+}
+
 .built-with-text {
   font-size: 0.85rem;
   color: var(--text-secondary);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.35rem;
   margin: 0;
@@ -339,72 +216,23 @@
   border-color: rgba(22, 163, 74, 0.25);
 }
 
-[data-theme="light"] .brand-title {
+[data-theme="light"] .brand-name {
   color: #0f172a;
-}
-
-[data-theme="light"] .footer-heading {
-  color: #0f172a;
-}
-
-[data-theme="light"] .footer-nav-list a {
-  color: #475569;
-}
-
-[data-theme="light"] .footer-nav-list a:hover {
-  color: #16a34a;
-}
-
-[data-theme="light"] .footer-social-btn {
-  background: #ffffff;
-  border-color: rgba(15, 23, 42, 0.12);
-  color: #334155;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-}
-
-[data-theme="light"] .footer-social-btn:hover {
-  background: #f0fdf4;
-  border-color: #16a34a;
-  color: #16a34a;
-}
-
-[data-theme="light"] .footer-social-btn.resume-btn {
-  background: #16a34a;
-  color: #ffffff;
-  border-color: #16a34a;
-}
-
-[data-theme="light"] .footer-social-btn.resume-btn:hover {
-  background: #15803d;
-  color: #ffffff;
-}
-
-[data-theme="light"] .footer-bottom-bar {
-  border-top-color: rgba(15, 23, 42, 0.08);
 }
 
 /* === Responsive === */
-@media (max-width: 900px) {
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
-  }
-  .bio-col {
-    grid-column: span 2;
-  }
-}
-
-@media (max-width: 600px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  .bio-col {
-    grid-column: span 1;
-  }
-  .footer-bottom-bar {
+@media (max-width: 650px) {
+  .footer-minimal-content {
     flex-direction: column;
     text-align: center;
-    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+  }
+  .footer-minimal-info {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .footer-dot {
+    display: none;
   }
 }

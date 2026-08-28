@@ -55,7 +55,7 @@ const TECH_ITEMS = [
   { name: 'SQL & DBMS', icon: <Database size={16} />, color: '#0284c7', glow: 'rgba(2, 132, 199, 0.4)' }
 ];
 
-export default function Footer({ onOpenResume }) {
+export default function Footer() {
   // Duplicate array 3 times for seamless infinite loop
   const marqueeItems = [...TECH_ITEMS, ...TECH_ITEMS, ...TECH_ITEMS];
 
@@ -89,93 +89,23 @@ export default function Footer({ onOpenResume }) {
         </div>
       </div>
 
-      {/* 2. Main Footer Content */}
-      <div className="footer-main-container container">
-        <div className="footer-grid">
-          {/* Col 1: Bio & Status */}
-          <div className="footer-col bio-col">
-            <div className="footer-brand">
-              <span className="brand-logo">&lt;TK /&gt;</span>
-              <h3 className="brand-title">Tapesh Kumar Karkel</h3>
-            </div>
-            <p className="footer-bio">
-              Computer Science Engineer building resilient full-stack applications, cross-platform mobile experiences, and real-time IoT hardware systems.
+      {/* 2. Sleek Clean Minimal Bottom Bar (Zero Redundancy) */}
+      <div className="footer-minimal-container container">
+        <div className="footer-minimal-content">
+          <div className="footer-minimal-brand">
+            <span className="brand-logo">&lt;TK /&gt;</span>
+            <span className="brand-name">Tapesh Kumar Karkel</span>
+          </div>
+
+          <div className="footer-minimal-info">
+            <p className="copyright-text">
+              © {new Date().getFullYear()} Tapesh Kumar Karkel. All rights reserved.
             </p>
-            <div className="footer-status-pill">
-              <span className="status-ping"></span>
-              <span>Available for Full-Time Roles &amp; Opportunities</span>
-            </div>
+            <span className="footer-dot">•</span>
+            <p className="built-with-text">
+              Built with <Heart size={12} className="heart-icon" /> using <strong>React 19, Vite &amp; Modern CSS</strong>
+            </p>
           </div>
-
-          {/* Col 2: Navigation Links */}
-          <div className="footer-col links-col">
-            <h4 className="footer-heading">Navigation</h4>
-            <ul className="footer-nav-list">
-              <li><a href="#about">About Me</a></li>
-              <li><a href="#skills">Skills &amp; Tech</a></li>
-              <li><a href="#experience">Work Experience</a></li>
-              <li><a href="#projects">Academic Projects</a></li>
-              <li><a href="#certifications">Certifications</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
-
-          {/* Col 3: Connect & Socials */}
-          <div className="footer-col social-col">
-            <h4 className="footer-heading">Connect</h4>
-            <div className="footer-social-links">
-              <a 
-                href="https://github.com/Tapesh-01" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="footer-social-btn"
-                aria-label="GitHub Profile"
-              >
-                <GithubIcon size={18} />
-                <span>GitHub</span>
-              </a>
-
-              <a 
-                href="https://linkedin.com/in/tapesh-karkel" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="footer-social-btn linkedin"
-                aria-label="LinkedIn Profile"
-              >
-                <LinkedinIcon size={18} />
-                <span>LinkedIn</span>
-              </a>
-
-              <a 
-                href="mailto:tapeshkarkel@gmail.com" 
-                className="footer-social-btn email"
-                aria-label="Email Tapesh"
-              >
-                <Mail size={18} />
-                <span>Email Me</span>
-              </a>
-
-              <button 
-                type="button" 
-                onClick={onOpenResume} 
-                className="footer-social-btn resume-btn"
-                aria-label="View Resume Modal"
-              >
-                <FileText size={18} />
-                <span>View Resume</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* 3. Bottom Copyright Bar */}
-        <div className="footer-bottom-bar">
-          <p className="copyright-text">
-            © {new Date().getFullYear()} Tapesh Kumar Karkel. All rights reserved.
-          </p>
-          <p className="built-with-text">
-            Engineered with <Heart size={13} className="heart-icon" /> using <strong>React 19</strong>, <strong>Vite</strong> &amp; <strong>Modern CSS</strong>
-          </p>
         </div>
       </div>
     </footer>
