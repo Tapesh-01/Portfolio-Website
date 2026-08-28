@@ -1,27 +1,44 @@
-import React from 'react';
-import ThreeBg from './components/ThreeBg';
+import React, { useState } from 'react';
+import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
+import Certifications from './components/Certifications';
 import Contact from './components/Contact';
+import BackToTop from './components/BackToTop';
+import ResumeModal from './components/ResumeModal';
+import ScrollProgressBar from './components/ScrollProgressBar';
+import MarqueeTicker from './components/MarqueeTicker';
 import ScrollReveal from './components/ScrollReveal';
 
 export default function App() {
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+
   return (
     <>
-      {/* 3D Background */}
-      <ThreeBg />
+      {/* Top Reading Progress Bar */}
+      <ScrollProgressBar />
+
+      {/* Fullscreen Supersonic Speeder Preloader */}
+      <Preloader />
+
+      {/* Floating Back to Top Button */}
+      <BackToTop />
+
+      {/* Interactive Fullscreen Resume Modal */}
+      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
 
       {/* Navigation */}
-      <Navbar />
+      <Navbar onOpenResume={() => setIsResumeOpen(true)} />
+
 
       {/* Main Content */}
       <main style={{ position: 'relative', zIndex: 10 }}>
-        {/* Hero Section */}
-        <Hero />
+        {/* Hero Section (Contains Bottom Marquee Ticker) */}
+        <Hero onOpenResume={() => setIsResumeOpen(true)} />
 
         {/* About Section */}
         <About />
@@ -34,6 +51,9 @@ export default function App() {
 
         {/* Projects Section */}
         <Projects />
+
+        {/* Certifications Section */}
+        <Certifications />
 
         {/* Contact Section */}
         <Contact />

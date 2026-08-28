@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
 
 :root {
-  /* Color Palette */
+  /* Color Palette - Dark Mode (Default) */
   --bg-primary: #0a0b10;
   --bg-secondary: #11131e;
   --bg-tertiary: #171926;
@@ -18,9 +18,10 @@
   --border-color: rgba(255, 255, 255, 0.08);
   --border-hover: rgba(0, 240, 255, 0.3);
   
-  /* Fonts */
-  --font-sans: 'Inter', sans-serif;
-  --font-heading: 'Outfit', sans-serif;
+  /* Upgraded Modern Tech Typography */
+  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  --font-display: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'Fira Code', monospace;
   
   /* Transitions */
@@ -29,10 +30,117 @@
   --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Light / Bright Theme */
+[data-theme="light"] {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f5f9;
+  
+  --accent-cyan: #16a34a;
+  --accent-purple: #15803d;
+  --accent-pink: #22c55e;
+  --accent-glow: rgba(34, 197, 94, 0.25);
+  
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  
+  --border-color: rgba(15, 23, 42, 0.12);
+  --border-hover: rgba(34, 197, 94, 0.5);
+}
+
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6,
+[data-theme="light"] .section-title,
+[data-theme="light"] .project-title-area h3,
+[data-theme="light"] .skills-category h3,
+[data-theme="light"] .skills-visual h3,
+[data-theme="light"] .exp-role,
+[data-theme="light"] .timeline-info h4 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .project-title-area h4,
+[data-theme="light"] .exp-company,
+[data-theme="light"] .timeline-info h5,
+[data-theme="light"] .project-desc p,
+[data-theme="light"] .exp-desc p,
+[data-theme="light"] .about-text p {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .glass-panel,
+[data-theme="light"] .timeline-item,
+[data-theme="light"] .skills-category,
+[data-theme="light"] .skills-visual,
+[data-theme="light"] .experience-card,
+[data-theme="light"] .project-card,
+[data-theme="light"] .contact-info,
+[data-theme="light"] .contact-form-container {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .glass-panel:hover,
+[data-theme="light"] .timeline-item:hover,
+[data-theme="light"] .skills-category:hover,
+[data-theme="light"] .skills-visual:hover,
+[data-theme="light"] .experience-card:hover,
+[data-theme="light"] .project-card:hover,
+[data-theme="light"] .contact-info:hover,
+[data-theme="light"] .contact-form-container:hover {
+  border-color: rgba(34, 197, 94, 0.5) !important;
+  box-shadow: 0 15px 35px -10px rgba(34, 197, 94, 0.25) !important;
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(248, 250, 252, 0.85);
+}
+
+[data-theme="light"] .navbar.scrolled {
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .navbar-logo {
+  color: #0f172a;
+}
+
+[data-theme="light"] .navbar-logo span {
+  background: linear-gradient(90deg, #0f172a, var(--accent-cyan));
+  -webkit-background-clip: text;
+}
+
+[data-theme="light"] .nav-link {
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .rope {
+  background-color: #0f172a;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] footer {
+  background: rgba(241, 245, 249, 0.92) !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
+  color: #64748b !important;
+}
+
+
+
+
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition: background-color 0.35s ease, border-color 0.35s ease;
 }
 
 html {
@@ -48,7 +156,9 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
+
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -85,7 +195,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 h1 {
@@ -104,14 +214,72 @@ h2 {
   margin-right: auto;
 }
 
-h2::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-purple), transparent);
+/* Section Header Typography Suite */
+.section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 50px;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.22);
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.section-subtitle {
+  font-size: 1.02rem;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Dual-Tone Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, #38bdf8 50%, var(--accent-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+[data-theme="light"] .section-eyebrow {
+  background: rgba(22, 163, 74, 0.08);
+  border-color: rgba(22, 163, 74, 0.28);
+  color: #16a34a;
+  box-shadow: 0 0 15px rgba(22, 163, 74, 0.1);
+}
+
+[data-theme="light"] .gradient-text {
+  background: linear-gradient(135deg, #16a34a 0%, #0284c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 p {

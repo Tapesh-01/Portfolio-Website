@@ -41,7 +41,13 @@ export default function About() {
     <section id="about" className="about-section section">
       <div className="about-container container">
         <ScrollReveal>
-          <h2 className="section-title">About Me</h2>
+          <div className="section-header">
+            <span className="section-eyebrow">// 01. DISCOVER</span>
+            <h2 className="section-title">About <span className="gradient-text">Me</span></h2>
+            <p className="section-subtitle">
+              Passionate Computer Science engineer driven by building scalable full-stack applications and connected systems.
+            </p>
+          </div>
         </ScrollReveal>
 
         <div className="about-content">
@@ -89,37 +95,39 @@ export default function About() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.3}>
             <div className="about-education">
-              <h3 style={{fontSize: '1.5rem', marginBottom: '1.5rem', fontFamily: 'var(--font-heading)', background: 'linear-gradient(90deg, #ffffff, var(--accent-cyan))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', textAlign: 'center'}}>Education History</h3>
+              <ScrollReveal delay={0.1}>
+                <h3 className="about-subheading">Education History</h3>
+              </ScrollReveal>
               <div className="education-timeline">
                 {EDUCATION.map((item, index) => (
-                  <div key={index} className="timeline-item glass-panel">
-                    <div className={`timeline-marker ${item.logo ? 'has-logo' : ''}`}>
-                      {item.logo ? (
-                        <img src={item.logo} alt={item.institution} className="timeline-logo-img" />
-                      ) : (
-                        <GraduationCap size={18} />
-                      )}
-                    </div>
-                    <div className="timeline-content">
-                      <div className="timeline-header">
-                        <h4>{item.degree}</h4>
-                        <span className="timeline-duration">
-                          <Calendar size={14} /> {item.duration}
-                        </span>
+                  <ScrollReveal key={index} delay={index * 0.15}>
+                    <div className="timeline-item glass-panel">
+                      <div className={`timeline-marker ${item.logo ? 'has-logo' : ''}`}>
+                        {item.logo ? (
+                          <img src={item.logo} alt={item.institution} className="timeline-logo-img" />
+                        ) : (
+                          <GraduationCap size={26} />
+                        )}
                       </div>
-                      <h5 className="timeline-institution">{item.institution}</h5>
-                      <p className="timeline-desc">{item.desc}</p>
-                      <div className="timeline-score">
-                        <strong>{item.scoreType}:</strong> <span>{item.score}</span>
+                      <div className="timeline-content">
+                        <div className="timeline-header">
+                          <h4>{item.degree}</h4>
+                          <span className="timeline-duration">
+                            <Calendar size={14} /> {item.duration}
+                          </span>
+                        </div>
+                        <h5 className="timeline-institution">{item.institution}</h5>
+                        <p className="timeline-desc">{item.desc}</p>
+                        <div className="timeline-score">
+                          <strong>{item.scoreType}:</strong> <span>{item.score}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </ScrollReveal>
                 ))}
               </div>
             </div>
-          </ScrollReveal>
         </div>
       </div>
     </section>

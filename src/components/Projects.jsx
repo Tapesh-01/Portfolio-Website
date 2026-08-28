@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ExternalLink, Globe, Cpu, HeartPulse, Film, Smartphone } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
 import tiffinImage from '../assets/tiffin_project.png';
 import wanderlustImage from '../assets/wanderlust_project.png';
 import movieImage from '../assets/movie_project.jpg';
@@ -38,7 +39,7 @@ const PROJECTS = [
     year: '2025',
     tags: ['Node.js', 'Express.js', 'MongoDB', 'Leaflet.js', 'Cloudinary', 'Gemini AI'],
     desc: 'A full-stack rental lodging platform. Features secure listings and bookings, dynamic map overlays with Leaflet.js, and an integrated AI chat assistant (WanderBot) built using Gemini AI to handle customer support inquiries.',
-    githubUrl: 'https://github.com/Tapesh-01/Wanderlust',
+    githubUrl: 'https://github.com/Tapesh-01/Wandurlust',
     liveUrl: 'https://wandurlust-31y0.onrender.com/'
   },
   {
@@ -113,7 +114,7 @@ const ProjectCard = ({ project, idx }) => {
       style={{ transitionDelay: `${Math.min(idx * 0.1, 0.5)}s` }}
     >
       <div className="project-timeline-marker">
-        {React.cloneElement(project.icon, { size: 18 })}
+        {React.cloneElement(project.icon, { size: 26 })}
       </div>
 
       <div className="project-card-inner">
@@ -175,26 +176,34 @@ export default function Projects() {
   return (
     <section id="projects" className="projects-section section">
       <div className="projects-container container">
-        <h2 className="section-title">Academic Projects</h2>
+        <ScrollReveal>
+          <div className="section-header">
+            <span className="section-eyebrow">// 04. FEATURED WORK</span>
+            <h2 className="section-title">Academic <span className="gradient-text">Projects</span></h2>
+            <p className="section-subtitle">
+              End-to-end full-stack applications, mobile ecosystems, ML models, and IoT hardware prototypes.
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="project-filters">
-          <button 
+          <button
             className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
             onClick={() => setFilter('all')}
           >
-            All Projects
+            <span>All Projects</span>
           </button>
-          <button 
+          <button
             className={`filter-btn ${filter === 'full-stack' ? 'active' : ''}`}
             onClick={() => setFilter('full-stack')}
           >
-            Full-Stack
+            <span>Full-Stack</span>
           </button>
-          <button 
+          <button
             className={`filter-btn ${filter === 'iot' ? 'active' : ''}`}
             onClick={() => setFilter('iot')}
           >
-            IoT & Hardware
+            <span>IoT &amp; Hardware</span>
           </button>
         </div>
 

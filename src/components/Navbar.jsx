@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Code2 } from 'lucide-react';
+import { Menu, X, Code2, FileText } from 'lucide-react';
 import './Navbar.css';
 
 const NAV_ITEMS = [
@@ -8,10 +8,11 @@ const NAV_ITEMS = [
   { label: 'Skills', target: '#skills' },
   { label: 'Experience', target: '#experience' },
   { label: 'Projects', target: '#projects' },
+  { label: 'Certifications', target: '#certifications' },
   { label: 'Contact', target: '#contact' }
 ];
 
-export default function Navbar() {
+export default function Navbar({ onOpenResume }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('#home');
   const [scrolled, setScrolled] = useState(false);
@@ -78,20 +79,27 @@ export default function Navbar() {
           <span>Tapesh.dev</span>
         </a>
 
-        {/* Desktop Navigation */}
-        <ul className="navbar-links">
-          {NAV_ITEMS.map((item) => (
-            <li key={item.target}>
-              <a
-                href={item.target}
-                className={activeSection === item.target ? 'active' : ''}
-                onClick={(e) => handleNavClick(e, item.target)}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        {/* Desktop Navigation & Resume CTA */}
+        <div className="navbar-right-group">
+          <ul className="navbar-links">
+            {NAV_ITEMS.map((item) => (
+              <li key={item.target}>
+                <a
+                  href={item.target}
+                  className={activeSection === item.target ? 'active' : ''}
+                  onClick={(e) => handleNavClick(e, item.target)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <button className="nav-resume-btn" onClick={onOpenResume} aria-label="View Resume">
+            <FileText size={15} />
+            <span>Resume</span>
+          </button>
+        </div>
 
         {/* Mobile Hamburger Button */}
         <button className="navbar-mobile-toggle" onClick={toggleMenu} aria-label="Toggle Navigation">
@@ -113,6 +121,12 @@ export default function Navbar() {
               </a>
             </li>
           ))}
+          <li>
+            <button className="mobile-resume-btn" onClick={() => { onOpenResume(); closeMenu(); }}>
+              <FileText size={18} />
+              <span>View Resume</span>
+            </button>
+          </li>
         </ul>
       </div>
     </nav>

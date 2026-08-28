@@ -6,7 +6,12 @@
   margin: 2rem auto 0;
   position: relative;
   padding-left: 2rem;
-  border-left: 2px solid var(--bg-tertiary);
+  border-left: 2px solid transparent;
+  border-image: linear-gradient(to bottom, rgba(0, 240, 255, 0.45), rgba(189, 0, 255, 0.3), rgba(0, 240, 255, 0.08)) 1 100%;
+}
+
+[data-theme="light"] .experience-cards {
+  border-image: linear-gradient(to bottom, rgba(22, 163, 74, 0.5), rgba(15, 23, 42, 0.25), rgba(22, 163, 74, 0.08)) 1 100%;
 }
 
 .experience-card {
@@ -19,20 +24,29 @@
   text-align: left;
   border-radius: 16px;
   border: 1px solid var(--border-color);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  perspective: 1000px;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              box-shadow 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              border-color 0.4s ease;
 }
 
 .experience-card:hover {
+  transform: translateY(-6px) scale(1.015);
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+  box-shadow: 0 20px 45px -10px rgba(0, 240, 255, 0.25), 0 0 20px rgba(0, 240, 255, 0.15);
+}
+
+[data-theme="light"] .experience-card:hover {
+  border-color: rgba(34, 197, 94, 0.5) !important;
+  box-shadow: 0 20px 45px -10px rgba(34, 197, 94, 0.25), 0 0 20px rgba(34, 197, 94, 0.15) !important;
 }
 
 .experience-timeline-marker {
   position: absolute;
   left: -3.15rem;
   top: 2rem;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2.3rem;
+  height: 2.3rem;
   border-radius: 50%;
   background: var(--bg-secondary);
   border: 2px solid var(--border-color);
@@ -40,7 +54,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: all var(--transition-fast);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
@@ -66,10 +80,35 @@
   mix-blend-mode: multiply; /* Helps remove light backgrounds for a clean cutout look */
 }
 
-.experience-card:hover .experience-timeline-marker {
+.experience-card:hover .experience-timeline-marker:not(.has-logo) {
   border-color: var(--accent-cyan);
+  background: var(--accent-cyan);
+  color: #0a0b10;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+}
+
+.experience-card:hover .experience-timeline-marker.has-logo {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+}
+
+[data-theme="light"] .experience-timeline-marker:not(.has-logo) {
+  background: #ffffff;
+  border-color: rgba(34, 197, 94, 0.5);
+  color: #16a34a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .experience-card:hover .experience-timeline-marker:not(.has-logo) {
+  border-color: #16a34a;
+  background: #16a34a;
   color: #ffffff;
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+  box-shadow: 0 0 18px rgba(34, 197, 94, 0.5);
+}
+
+[data-theme="light"] .experience-timeline-marker.has-logo {
+  border-color: #16a34a;
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.3), 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .exp-info {

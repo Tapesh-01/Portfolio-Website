@@ -46,7 +46,13 @@ export default function Experience() {
     <section id="experience" className="experience-section section">
       <div className="experience-container container">
         <ScrollReveal>
-          <h2 className="section-title">Professional Experience</h2>
+          <div className="section-header">
+            <span className="section-eyebrow">// 03. CAREER JOURNEY</span>
+            <h2 className="section-title">Work <span className="gradient-text">Experience</span></h2>
+            <p className="section-subtitle">
+              Hands-on industry experience building scalable web solutions, ERP systems, and enterprise modules.
+            </p>
+          </div>
         </ScrollReveal>
 
         <div className="experience-cards timeline-container">
