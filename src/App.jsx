@@ -8,6 +8,7 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
+import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import ResumeModal from './components/ResumeModal';
 import ScrollProgressBar from './components/ScrollProgressBar';
@@ -34,7 +35,6 @@ export default function App() {
       {/* Navigation */}
       <Navbar onOpenResume={() => setIsResumeOpen(true)} />
 
-
       {/* Main Content */}
       <main style={{ position: 'relative', zIndex: 10 }}>
         {/* Hero Section (Contains Bottom Marquee Ticker) */}
@@ -59,25 +59,8 @@ export default function App() {
         <Contact />
       </main>
 
-      {/* Footer */}
-      <footer style={{
-        position: 'relative',
-        zIndex: 10,
-        padding: '3rem 0',
-        textAlign: 'center',
-        borderTop: '1px solid rgba(255, 255, 255, 0.05)',
-        background: 'rgba(10, 11, 16, 0.8)',
-        backdropFilter: 'blur(10px)',
-        color: 'var(--text-muted)',
-        fontSize: '0.9rem'
-      }}>
-        <div className="container">
-          <p>© {new Date().getFullYear()} Tapesh Kumar Karkel. All rights reserved.</p>
-          <p style={{ marginTop: '0.5rem', fontSize: '0.8rem' }}>
-            Built with React 19, Vite &amp; Modern CSS
-          </p>
-        </div>
-      </footer>
+      {/* Modern Footer with Infinite Tech Stack Ribbon */}
+      <Footer onOpenResume={() => setIsResumeOpen(true)} />
     </>
   );
 }
