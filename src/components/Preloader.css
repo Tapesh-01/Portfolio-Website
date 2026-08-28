@@ -1,0 +1,421 @@
+/* === Supersonic Speeder Preloader (From Uiverse.io by anand_4957) === */
+.preloader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0a0b10;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.preloader-overlay.exiting {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+.preloader-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Speeder Body */
+.loader {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  margin-left: -50px;
+  animation: speeder 0.4s linear infinite;
+  z-index: 10;
+}
+
+.loader > span {
+  height: 5px;
+  width: 35px;
+  background: #00f0ff;
+  position: absolute;
+  top: -19px;
+  left: 60px;
+  border-radius: 2px 10px 1px 0;
+  box-shadow: 0 0 12px #00f0ff;
+}
+
+.base span {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-right: 100px solid #e0f2fe;
+  border-bottom: 6px solid transparent;
+}
+
+.base span:before {
+  content: "";
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  background: #e0f2fe;
+  position: absolute;
+  right: -110px;
+  top: -16px;
+}
+
+.base span:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 0 solid transparent;
+  border-right: 55px solid #e0f2fe;
+  border-bottom: 16px solid transparent;
+  top: -16px;
+  right: -98px;
+}
+
+.face {
+  position: absolute;
+  height: 12px;
+  width: 20px;
+  background: #e0f2fe;
+  border-radius: 20px 20px 0 0;
+  transform: rotate(-40deg);
+  right: -125px;
+  top: -15px;
+}
+
+.face:after {
+  content: "";
+  height: 12px;
+  width: 12px;
+  background: #00f0ff;
+  right: 4px;
+  top: 7px;
+  position: absolute;
+  transform: rotate(40deg);
+  transform-origin: 50% 50%;
+  border-radius: 0 0 2px 2px;
+}
+
+.loader > span > span {
+  width: 30px;
+  height: 1px;
+  background: #ffffff;
+  position: absolute;
+}
+
+.loader > span > span:nth-child(1) {
+  animation: fazer1 0.2s linear infinite;
+}
+
+.loader > span > span:nth-child(2) {
+  top: 3px;
+  animation: fazer2 0.4s linear infinite;
+}
+
+.loader > span > span:nth-child(3) {
+  top: 1px;
+  animation: fazer3 0.4s linear infinite;
+  animation-delay: -1s;
+}
+
+.loader > span > span:nth-child(4) {
+  top: 4px;
+  animation: fazer4 1s linear infinite;
+  animation-delay: -1s;
+}
+
+@keyframes fazer1 {
+  0% { left: 0; }
+  100% { left: -80px; opacity: 0; }
+}
+
+@keyframes fazer2 {
+  0% { left: 0; }
+  100% { left: -100px; opacity: 0; }
+}
+
+@keyframes fazer3 {
+  0% { left: 0; }
+  100% { left: -50px; opacity: 0; }
+}
+
+@keyframes fazer4 {
+  0% { left: 0; }
+  100% { left: -150px; opacity: 0; }
+}
+
+@keyframes speeder {
+  0% { transform: translate(2px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -3px) rotate(-1deg); }
+  20% { transform: translate(-2px, 0px) rotate(1deg); }
+  30% { transform: translate(1px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 3px) rotate(-1deg); }
+  60% { transform: translate(-1px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-2px, -1px) rotate(1deg); }
+  90% { transform: translate(2px, 1px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+/* Long Wind Lines */
+.longfazers {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.longfazers span {
+  position: absolute;
+  height: 2px;
+  width: 20%;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.longfazers span:nth-child(1) {
+  top: 20%;
+  animation: lf 0.6s linear infinite;
+  animation-delay: -5s;
+}
+
+.longfazers span:nth-child(2) {
+  top: 40%;
+  animation: lf2 0.8s linear infinite;
+  animation-delay: -1s;
+}
+
+.longfazers span:nth-child(3) {
+  top: 60%;
+  animation: lf3 0.6s linear infinite;
+}
+
+.longfazers span:nth-child(4) {
+  top: 80%;
+  animation: lf4 0.5s linear infinite;
+  animation-delay: -3s;
+}
+
+@keyframes lf {
+  0% { left: 200%; }
+  100% { left: -200%; opacity: 0; }
+}
+
+@keyframes lf2 {
+  0% { left: 200%; }
+  100% { left: -200%; opacity: 0; }
+}
+
+@keyframes lf3 {
+  0% { left: 200%; }
+  100% { left: -100%; opacity: 0; }
+}
+
+@keyframes lf4 {
+  0% { left: 200%; }
+  100% { left: -100%; opacity: 0; }
+}
+
+/* Clouds Moving */
+.clouds {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.cloud {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: moveClouds linear infinite;
+}
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.cloud::before {
+  width: 60%;
+  height: 60%;
+  top: -30%;
+  left: 10%;
+}
+
+.cloud::after {
+  width: 40%;
+  height: 40%;
+  top: -20%;
+  left: 50%;
+}
+
+.cloud1 {
+  width: 120px;
+  height: 70px;
+  top: 15%;
+  left: 1400px;
+  animation-duration: 2s;
+}
+
+.cloud2 {
+  width: 160px;
+  height: 90px;
+  top: 35%;
+  left: 1600px;
+  animation-duration: 3s;
+}
+
+.cloud3 {
+  width: 90px;
+  height: 55px;
+  top: 20%;
+  left: 2000px;
+  animation-duration: 4s;
+}
+
+.cloud4 {
+  width: 110px;
+  height: 80px;
+  top: 68%;
+  left: 1100px;
+  animation-duration: 3s;
+}
+
+.cloud5 {
+  width: 180px;
+  height: 60px;
+  top: 82%;
+  left: 1500px;
+  animation-duration: 2.2s;
+}
+
+@keyframes moveClouds {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-2400px); }
+}
+
+/* Loading Status Typography */
+.preloader-footer {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 20;
+}
+
+.preloader-brand {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.9rem;
+  letter-spacing: 0.25em;
+  color: var(--accent-cyan, #00f0ff);
+  text-transform: uppercase;
+  font-weight: 700;
+  text-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+  white-space: nowrap;
+}
+
+.preloader-bar-track {
+  width: 180px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+  overflow: hidden;
+  position: relative;
+}
+
+.preloader-bar-fill {
+  height: 100%;
+  width: 60%;
+  background: linear-gradient(90deg, transparent, #00f0ff, #37FF8B);
+  border-radius: 99px;
+  animation: loadProgress 1.4s infinite ease-in-out;
+}
+
+@keyframes loadProgress {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
+}
+
+/* === Light Theme Overrides for Preloader === */
+[data-theme="light"] .preloader-overlay {
+  background: #f8fafc;
+}
+
+[data-theme="light"] .loader > span {
+  background: #16a34a;
+  box-shadow: 0 0 12px rgba(22, 163, 74, 0.6);
+}
+
+[data-theme="light"] .base span {
+  border-right-color: #0f172a;
+}
+
+[data-theme="light"] .base span:before {
+  background: #0f172a;
+}
+
+[data-theme="light"] .base span:after {
+  border-right-color: #0f172a;
+}
+
+[data-theme="light"] .face {
+  background: #0f172a;
+}
+
+[data-theme="light"] .face:after {
+  background: #16a34a;
+}
+
+[data-theme="light"] .loader > span > span {
+  background: #334155;
+}
+
+[data-theme="light"] .longfazers span {
+  background: rgba(15, 23, 42, 0.25);
+}
+
+[data-theme="light"] .cloud {
+  background: #cbd5e1;
+  opacity: 0.45;
+}
+
+[data-theme="light"] .cloud::before,
+[data-theme="light"] .cloud::after {
+  background: #cbd5e1;
+}
+
+[data-theme="light"] .preloader-brand {
+  color: #0f172a;
+  text-shadow: none;
+}
+
+[data-theme="light"] .preloader-bar-track {
+  background: rgba(15, 23, 42, 0.12);
+}
+
+[data-theme="light"] .preloader-bar-fill {
+  background: linear-gradient(90deg, transparent, #16a34a, #22c55e);
+}

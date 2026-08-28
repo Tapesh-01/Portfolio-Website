@@ -1,0 +1,52 @@
+/* === Reusable Section Infinite Marquee Ticker === */
+.section-marquee-bar {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background: #37FF8B;
+  color: #0a0b10;
+  padding: 0.85rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: var(--font-heading, sans-serif);
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  box-shadow: 0 -4px 20px rgba(55, 255, 139, 0.2), 0 4px 20px rgba(55, 255, 139, 0.2);
+  z-index: 15;
+  user-select: none;
+}
+
+[data-theme="light"] .section-marquee-bar {
+  background: #16a34a;
+  color: #ffffff;
+  box-shadow: 0 -4px 20px rgba(22, 163, 74, 0.15), 0 4px 20px rgba(22, 163, 74, 0.15);
+}
+
+.section-marquee-bar .marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.8rem;
+  animation: marquee-infinite-scroll 26s linear infinite;
+  will-change: transform;
+}
+
+.section-marquee-bar .marquee-star {
+  font-size: 1.1rem;
+  opacity: 0.75;
+}
+
+@keyframes marquee-infinite-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 768px) {
+  .section-marquee-bar {
+    font-size: 0.95rem;
+    padding: 0.75rem 0;
+  }
+}
