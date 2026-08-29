@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Code2, FileText, Sun, Moon } from 'lucide-react';
+import { Menu, X, Code2, FileText } from 'lucide-react';
 import './Navbar.css';
 
 const NAV_ITEMS = [
@@ -12,7 +12,7 @@ const NAV_ITEMS = [
   { label: 'Contact', target: '#contact' }
 ];
 
-export default function Navbar({ onOpenResume, theme = 'dark', onToggleTheme }) {
+export default function Navbar({ onOpenResume }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('#home');
   const [scrolled, setScrolled] = useState(false);
@@ -121,27 +121,10 @@ export default function Navbar({ onOpenResume, theme = 'dark', onToggleTheme }) 
               </a>
             </li>
           ))}
-          <li className="mobile-drawer-cta-row">
-            <button 
-              className="mobile-theme-btn" 
-              onClick={() => { onToggleTheme(); closeMenu(); }}
-              aria-label="Toggle Light / Dark Mode"
-            >
-              {theme === 'dark' ? (
-                <>
-                  <Sun size={18} className="theme-sun-icon" />
-                  <span>Light Mode ☀️</span>
-                </>
-              ) : (
-                <>
-                  <Moon size={18} className="theme-moon-icon" />
-                  <span>Dark Mode 🌙</span>
-                </>
-              )}
-            </button>
+          <li>
             <button className="mobile-resume-btn" onClick={() => { onOpenResume(); closeMenu(); }}>
               <FileText size={18} />
-              <span>Resume</span>
+              <span>View Resume</span>
             </button>
           </li>
         </ul>
