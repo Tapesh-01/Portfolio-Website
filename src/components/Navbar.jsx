@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Code2, FileText } from 'lucide-react';
+import { Menu, X, Code2, FileText, Sun, Moon } from 'lucide-react';
 import './Navbar.css';
 
 const NAV_ITEMS = [
@@ -12,7 +12,7 @@ const NAV_ITEMS = [
   { label: 'Contact', target: '#contact' }
 ];
 
-export default function Navbar({ onOpenResume }) {
+export default function Navbar({ onOpenResume, theme = 'dark', onToggleTheme }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('#home');
   const [scrolled, setScrolled] = useState(false);
@@ -79,7 +79,7 @@ export default function Navbar({ onOpenResume }) {
           <span>Tapesh.dev</span>
         </a>
 
-        {/* Desktop Navigation & Resume CTA */}
+        {/* Desktop Navigation, Theme Toggle & Resume CTA */}
         <div className="navbar-right-group">
           <ul className="navbar-links">
             {NAV_ITEMS.map((item) => (
@@ -95,16 +95,44 @@ export default function Navbar({ onOpenResume }) {
             ))}
           </ul>
 
+          <button 
+            className="nav-theme-btn" 
+            onClick={onToggleTheme} 
+            aria-label="Toggle Light / Dark Theme"
+            title={theme === 'dark' ? "Switch to Light Mode ☀️" : "Switch to Dark Mode 🌙"}
+          >
+            {theme === 'dark' ? (
+              <Sun size={18} className="theme-sun-icon" />
+            ) : (
+              <Moon size={18} className="theme-moon-icon" />
+            )}
+          </button>
+
           <button className="nav-resume-btn" onClick={onOpenResume} aria-label="View Resume">
             <FileText size={15} />
             <span>Resume</span>
           </button>
         </div>
 
-        {/* Mobile Hamburger Button */}
-        <button className="navbar-mobile-toggle" onClick={toggleMenu} aria-label="Toggle Navigation">
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Header Action Group (Theme Button + Hamburger) */}
+        <div className="navbar-mobile-actions">
+          <button 
+            className="mobile-header-theme-btn" 
+            onClick={onToggleTheme} 
+            aria-label="Toggle Light / Dark Theme"
+            title={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          >
+            {theme === 'dark' ? (
+              <Sun size={19} className="theme-sun-icon" />
+            ) : (
+              <Moon size={19} className="theme-moon-icon" />
+            )}
+          </button>
+
+          <button className="navbar-mobile-toggle" onClick={toggleMenu} aria-label="Toggle Navigation">
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Drawer */}
@@ -121,10 +149,27 @@ export default function Navbar({ onOpenResume }) {
               </a>
             </li>
           ))}
-          <li>
+          <li className="mobile-drawer-cta-row">
+            <button 
+              className="mobile-theme-btn" 
+              onClick={() => { onToggleTheme(); closeMenu(); }}
+              aria-label="Toggle Light / Dark Mode"
+            >
+              {theme === 'dark' ? (
+                <>
+                  <Sun size={18} className="theme-sun-icon" />
+                  <span>Light Mode ☀️</span>
+                </>
+              ) : (
+                <>
+                  <Moon size={18} className="theme-moon-icon" />
+                  <span>Dark Mode 🌙</span>
+                </>
+              )}
+            </button>
             <button className="mobile-resume-btn" onClick={() => { onOpenResume(); closeMenu(); }}>
               <FileText size={18} />
-              <span>View Resume</span>
+              <span>Resume</span>
             </button>
           </li>
         </ul>

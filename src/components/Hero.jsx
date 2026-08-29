@@ -6,7 +6,6 @@ import spiderGreenImg from '../assets/spider_green.png';
 import spiderBlueImg from '../assets/spider_blue.png';
 import './Hero.css';
 
-import ThemeTransition from './ThemeTransition';
 import MarqueeTicker from './MarqueeTicker';
 import ResumeDownloadBtn from './ResumeDownloadBtn';
 
@@ -17,40 +16,17 @@ const ROLES = [
   'Problem Solver'
 ];
 
-export default function Hero({ onOpenResume }) {
+export default function Hero({ onOpenResume, theme = 'dark', onToggleTheme }) {
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(100);
-
-  // Theme Toggle State (Dark / Bright)
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('portfolio-theme') || 'dark';
-  });
   const [isPulling, setIsPulling] = useState(false);
-  const [transitioningTheme, setTransitioningTheme] = useState(null);
 
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('portfolio-theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    if (transitioningTheme) return;
+  const handleSpiderClick = () => {
     setIsPulling(true);
     setTimeout(() => setIsPulling(false), 500);
-
-    const nextTheme = theme === 'dark' ? 'light' : 'dark';
-    setTransitioningTheme(nextTheme);
-
-    // Switch theme halfway through hamster power-up
-    setTimeout(() => {
-      setTheme(nextTheme);
-    }, 700);
-  };
-
-  const handleTransitionComplete = () => {
-    setTransitioningTheme(null);
+    if (onToggleTheme) onToggleTheme();
   };
 
   useEffect(() => {
@@ -315,9 +291,10 @@ export default function Hero({ onOpenResume }) {
       </div>
 
       {/* Hanging Spider Theme Switcher */}
+      {/* Hanging Spider Theme Switcher */}
       <div
         className="spider-container"
-        onClick={toggleTheme}
+        onClick={handleSpiderClick}
         role="button"
         tabIndex={0}
         aria-label="Toggle Bright / Dark Theme"
@@ -334,14 +311,6 @@ export default function Hero({ onOpenResume }) {
 
       {/* Bottom Infinite Marquee Ticker */}
       <MarqueeTicker />
-
-      {/* Fullscreen Hamster Wheel Theme Transition Overlay */}
-      {transitioningTheme && (
-        <ThemeTransition 
-          targetTheme={transitioningTheme} 
-          onComplete={handleTransitionComplete} 
-        />
-      )}
     </section>
   );
 }
