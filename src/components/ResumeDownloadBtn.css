@@ -1,54 +1,81 @@
-﻿/* From Uiverse.io by d3uceY */ 
+﻿/* === Uiverse Slide-Animated Download CV Button (Matching Theme) === */ 
 .download-btn {
-  height: 45px;
-  width: 95px;
+  height: 48px;
+  width: 135px;
   cursor: pointer;
-  background: white;
-  border: none;
-  background: #ff0021;
-  border-radius: 30px;
+  background: linear-gradient(135deg, #00f0ff 0%, #0072ff 100%);
+  border: 1.5px solid rgba(0, 240, 255, 0.4);
+  border-radius: 50px;
   overflow: hidden;
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+  margin: 0;
   outline: none;
   user-select: none;
-  position: relative;
+  box-shadow: 0 4px 18px rgba(0, 240, 255, 0.35);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
 }
 
 .button-content {
-  transform: translateY(-45px);
-  transition: all 250ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+  height: 96px;
   width: 100%;
+  transform: translateY(-48px);
+  transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.svg-container,
-.text-container {
-  height: 45px;
+.svg-container {
+  height: 48px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
+}
+
+.text-container {
+  height: 48px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .text-container .text {
-  font-size: 13px;
-  color: #fff;
-  font-weight: 600;
+  font-family: var(--font-heading, sans-serif);
+  font-size: 13.5px;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.03em;
   opacity: 1;
-  transition: opacity ease-in-out 250ms;
+  transition: opacity 200ms ease-in-out;
+  white-space: nowrap;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .download-icon {
-  height: 25px;
-  width: 25px;
-  fill: #fff;
+  height: 24px;
+  width: 24px;
+  fill: #ffffff;
   opacity: 0;
-  transition: opacity ease-in-out 250ms;
+  transition: opacity 220ms ease-in-out, transform 250ms ease-in-out;
+  transform: scale(0.85);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
-/* hover state for the button */
+/* Hover state */
+.download-btn:hover {
+  border-color: #00f0ff;
+  box-shadow: 0 6px 24px rgba(0, 240, 255, 0.55);
+  transform: translateY(-2px);
+}
+
 .download-btn:hover .button-content {
   transform: translateY(0px);
 }
@@ -59,78 +86,31 @@
 
 .download-btn:hover .download-icon {
   opacity: 1;
+  transform: scale(1.05);
 }
 
+.download-btn:active .download-icon,
 .download-btn:focus .download-icon {
-  -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
-  animation: heartbeat 1.5s ease-in-out infinite both;
+  animation: heartbeat 1.2s ease-in-out infinite both;
 }
 
-@-webkit-keyframes heartbeat {
-  from {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transform-origin: center center;
-    transform-origin: center center;
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  10% {
-    -webkit-transform: scale(0.91);
-    transform: scale(0.91);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  17% {
-    -webkit-transform: scale(0.98);
-    transform: scale(0.98);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  33% {
-    -webkit-transform: scale(0.87);
-    transform: scale(0.87);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  45% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-}
 @keyframes heartbeat {
-  from {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transform-origin: center center;
-    transform-origin: center center;
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  10% {
-    -webkit-transform: scale(0.91);
-    transform: scale(0.91);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  17% {
-    -webkit-transform: scale(0.98);
-    transform: scale(0.98);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  33% {
-    -webkit-transform: scale(0.87);
-    transform: scale(0.87);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  45% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
+  0% { transform: scale(1); }
+  15% { transform: scale(1.18); }
+  30% { transform: scale(0.95); }
+  45% { transform: scale(1.15); }
+  60% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+/* Light Theme Overrides */
+[data-theme="light"] .download-btn {
+  background: linear-gradient(135deg, #16a34a 0%, #059669 100%);
+  border: 1.5px solid rgba(22, 163, 74, 0.4);
+  box-shadow: 0 4px 16px rgba(22, 163, 74, 0.3);
+}
+
+[data-theme="light"] .download-btn:hover {
+  border-color: #15803d;
+  box-shadow: 0 6px 22px rgba(22, 163, 74, 0.45);
 }

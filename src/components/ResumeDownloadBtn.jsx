@@ -2,8 +2,8 @@
 import './ResumeDownloadBtn.css';
 
 export default function ResumeDownloadBtn({ onOpenModal }) {
-  const handleDownload = () => {
-    // Trigger PDF download
+  const handleDownload = (e) => {
+    // 1. Direct PDF Download
     const link = document.createElement('a');
     link.href = '/Tapesh_Kumar_Karkel_Resume.pdf';
     link.download = 'Tapesh_Kumar_Karkel_Resume.pdf';
@@ -11,21 +11,21 @@ export default function ResumeDownloadBtn({ onOpenModal }) {
     link.click();
     document.body.removeChild(link);
 
-    // Optional modal preview
+    // 2. Open interactive modal preview
     if (onOpenModal) {
       setTimeout(() => {
         onOpenModal();
-      }, 500);
+      }, 400);
     }
   };
 
   return (
     <button 
-      className="download-btn pixel-corners"
+      className="download-btn pixel-corners" 
       onClick={handleDownload}
       type="button"
-      aria-label="Download Resume"
-      title="Download Resume PDF"
+      aria-label="Download CV"
+      title="Download Resume PDF & View Preview"
     >
       <div className="button-content">
         <div className="svg-container">
@@ -42,7 +42,7 @@ export default function ResumeDownloadBtn({ onOpenModal }) {
           </svg>
         </div>
         <div className="text-container">
-          <div className="text">Download</div>
+          <div className="text">Download CV</div>
         </div>
       </div>
     </button>
