@@ -930,8 +930,15 @@
   }
 
   .spider-container {
-    font-size: 11px;
-    right: 2%;
+    display: block;
+    font-size: 6.5px;
+    top: 75px;
+    right: 8px;
+    width: 14em;
+    height: 22em;
+    z-index: 35;
+    pointer-events: auto;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
@@ -972,12 +979,8 @@
   }
 
   .spider-container {
-    display: none;
+    font-size: 6px;
+    top: 70px;
+    right: 6px;
   }
 }
-
-
-
-
-
-
