@@ -13,14 +13,13 @@ import BackToTop from './components/BackToTop';
 import ResumeModal from './components/ResumeModal';
 import ScrollProgressBar from './components/ScrollProgressBar';
 import ThemeTransition from './components/ThemeTransition';
-import { playClickSound } from './utils/audio';
 
 export default function App() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
-  // Global Theme State (Dark / Light)
+  // Global Theme State (Default: Light Mode)
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('portfolio-theme') || 'dark';
+    return localStorage.getItem('portfolio-theme') || 'light';
   });
   const [transitioningTheme, setTransitioningTheme] = useState(null);
 
@@ -28,19 +27,6 @@ export default function App() {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('portfolio-theme', theme);
   }, [theme]);
-
-  // Global Tactile Sound Feedback on all interactive UI elements
-  useEffect(() => {
-    const handleGlobalClick = (e) => {
-      const target = e.target.closest('button, a, .light-button, .spider-container, .cert-card, .flip-card, .tab-btn, .project-card, .back-to-top-btn, input[type="submit"]');
-      if (target) {
-        playClickSound();
-      }
-    };
-
-    document.addEventListener('click', handleGlobalClick, { passive: true });
-    return () => document.removeEventListener('click', handleGlobalClick);
-  }, []);
 
   const toggleTheme = () => {
     if (transitioningTheme) return;
