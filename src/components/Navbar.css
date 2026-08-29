@@ -200,82 +200,6 @@
   background: linear-gradient(90deg, #16a34a, #15803d);
 }
 
-.navbar-mobile-actions {
-  display: none;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.mobile-header-theme-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: var(--accent-cyan);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
-}
-
-.mobile-header-theme-btn:hover {
-  background: rgba(0, 240, 255, 0.15);
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
-  transform: rotate(15deg);
-}
-
-[data-theme="light"] .mobile-header-theme-btn {
-  background: rgba(15, 23, 42, 0.05);
-  border-color: rgba(15, 23, 42, 0.12);
-  color: #16a34a;
-}
-
-[data-theme="light"] .mobile-header-theme-btn:hover {
-  background: rgba(22, 163, 74, 0.1);
-  border-color: #16a34a;
-  box-shadow: 0 0 12px rgba(22, 163, 74, 0.3);
-}
-
-.nav-theme-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: var(--accent-cyan);
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.nav-theme-btn:hover {
-  background: rgba(0, 240, 255, 0.12);
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 16px rgba(0, 240, 255, 0.45);
-  transform: translateY(-2px) rotate(15deg);
-}
-
-[data-theme="light"] .nav-theme-btn {
-  background: rgba(15, 23, 42, 0.05);
-  border-color: rgba(15, 23, 42, 0.12);
-  color: #16a34a;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-[data-theme="light"] .nav-theme-btn:hover {
-  background: rgba(22, 163, 74, 0.1);
-  border-color: #16a34a;
-  box-shadow: 0 0 14px rgba(22, 163, 74, 0.3);
-}
-
 .theme-sun-icon {
   color: #fbbf24;
   filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));
@@ -425,13 +349,8 @@
 
 @media (max-width: 768px) {
   .navbar-links,
-  .nav-theme-btn,
   .nav-resume-btn {
     display: none;
-  }
-  
-  .navbar-mobile-actions {
-    display: flex;
   }
 
   .navbar-mobile-toggle {

@@ -79,7 +79,7 @@ export default function Navbar({ onOpenResume, theme = 'dark', onToggleTheme }) 
           <span>Tapesh.dev</span>
         </a>
 
-        {/* Desktop Navigation, Theme Toggle & Resume CTA */}
+        {/* Desktop Navigation & Resume CTA */}
         <div className="navbar-right-group">
           <ul className="navbar-links">
             {NAV_ITEMS.map((item) => (
@@ -95,44 +95,16 @@ export default function Navbar({ onOpenResume, theme = 'dark', onToggleTheme }) 
             ))}
           </ul>
 
-          <button 
-            className="nav-theme-btn" 
-            onClick={onToggleTheme} 
-            aria-label="Toggle Light / Dark Theme"
-            title={theme === 'dark' ? "Switch to Light Mode ☀️" : "Switch to Dark Mode 🌙"}
-          >
-            {theme === 'dark' ? (
-              <Sun size={18} className="theme-sun-icon" />
-            ) : (
-              <Moon size={18} className="theme-moon-icon" />
-            )}
-          </button>
-
           <button className="nav-resume-btn" onClick={onOpenResume} aria-label="View Resume">
             <FileText size={15} />
             <span>Resume</span>
           </button>
         </div>
 
-        {/* Mobile Header Action Group (Theme Button + Hamburger) */}
-        <div className="navbar-mobile-actions">
-          <button 
-            className="mobile-header-theme-btn" 
-            onClick={onToggleTheme} 
-            aria-label="Toggle Light / Dark Theme"
-            title={theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode"}
-          >
-            {theme === 'dark' ? (
-              <Sun size={19} className="theme-sun-icon" />
-            ) : (
-              <Moon size={19} className="theme-moon-icon" />
-            )}
-          </button>
-
-          <button className="navbar-mobile-toggle" onClick={toggleMenu} aria-label="Toggle Navigation">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+        {/* Mobile Hamburger Button (3 lines) */}
+        <button className="navbar-mobile-toggle" onClick={toggleMenu} aria-label="Toggle Navigation">
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
 
       {/* Mobile Menu Drawer */}
