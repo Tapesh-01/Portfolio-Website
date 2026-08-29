@@ -257,7 +257,16 @@ export default function Hero({ onOpenResume }) {
                 </li>
                 <li className="icon-content">
                   <a
-                    href="mailto:tapeshkarkel@gmail.com"
+                    href="#contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const contactSection = document.getElementById('contact');
+                      if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                        const firstInput = contactSection.querySelector('input[name="name"], input');
+                        if (firstInput) setTimeout(() => firstInput.focus(), 600);
+                      }
+                    }}
                     aria-label="Email Tapesh"
                     data-social="email"
                   >

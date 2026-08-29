@@ -221,7 +221,7 @@
   margin: 0;
   width: 3rem;
   height: 3rem;
-  background: #37FF8B;
+  background: #00f0ff;
   border-radius: 1.625rem;
 }
 
@@ -282,7 +282,8 @@
 
 .uiverse-view-btn:hover .uv-circle {
   width: 100%;
-  box-shadow: 0 0 20px rgba(55, 255, 139, 0.4);
+  background: linear-gradient(135deg, #00f0ff 0%, #0072ff 100%);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.55);
 }
 
 [data-theme="light"] .uiverse-view-btn:hover .uv-circle {
@@ -322,7 +323,7 @@
   cursor: pointer;
   position: relative;
   background: rgba(255, 255, 255, 0.08);
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   padding: 0.4rem 0;
   border-radius: 9999px;
   min-width: 10rem;
@@ -332,17 +333,26 @@
   align-items: center;
   justify-content: flex-start;
   box-shadow: inset 1px 2px 5px rgba(0, 0, 0, 0.5);
-  transition: background 0.8s cubic-bezier(0.51, 0.026, 0.368, 1.016);
+  transition: all 0.5s cubic-bezier(0.51, 0.026, 0.368, 1.016);
   overflow: hidden;
 }
 
 [data-theme="light"] .uiverse-contact-btn {
   background: rgba(15, 23, 42, 0.06);
+  border-color: rgba(15, 23, 42, 0.1);
   box-shadow: inset 1px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .uiverse-contact-btn:hover {
-  background: #37FF8B;
+  background: linear-gradient(135deg, #00f0ff 0%, #0072ff 100%);
+  border-color: #00f0ff;
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+}
+
+[data-theme="light"] .uiverse-contact-btn:hover {
+  background: #16a34a;
+  border-color: #16a34a;
+  box-shadow: 0 0 20px rgba(22, 163, 74, 0.4);
 }
 
 .ucb-track {
@@ -369,17 +379,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: inset 1px -1px 3px 0 black;
+  box-shadow: inset 1px -1px 3px 0 rgba(0, 0, 0, 0.4);
   height: 100%;
   aspect-ratio: 1 / 1;
-  background: #37FF8B;
+  background: #00f0ff;
   transition: background 1s cubic-bezier(0.51, 0.026, 0.368, 1.016);
   color: #0f1120;
 }
 
+[data-theme="light"] .ucb-pill {
+  background: #16a34a;
+  color: #ffffff;
+}
+
 .uiverse-contact-btn:hover .ucb-pill {
-  background: #000;
-  color: #fff;
+  background: #0f1120;
+  color: #00f0ff;
+}
+
+[data-theme="light"] .uiverse-contact-btn:hover .ucb-pill {
+  background: #ffffff;
+  color: #16a34a;
 }
 
 .ucb-pill svg {

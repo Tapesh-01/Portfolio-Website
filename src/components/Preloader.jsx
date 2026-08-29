@@ -6,16 +6,28 @@ export default function Preloader() {
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
+    // Lock scroll during preloader
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+
     // Show high-speed animation for 1.8 seconds then trigger smooth exit
     const timer = setTimeout(() => {
       setExiting(true);
       const removeTimer = setTimeout(() => {
+        document.body.style.overflow = originalBodyOverflow;
+        document.documentElement.style.overflow = originalHtmlOverflow;
         setLoading(false);
       }, 600); // 600ms exit transition
       return () => clearTimeout(removeTimer);
     }, 1800);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      document.body.style.overflow = originalBodyOverflow;
+      document.documentElement.style.overflow = originalHtmlOverflow;
+    };
   }, []);
 
   if (!loading) return null;

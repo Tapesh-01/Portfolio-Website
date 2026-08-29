@@ -4,21 +4,23 @@
   inset: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(10, 11, 16, 0.96);
-  backdrop-filter: blur(16px);
-  z-index: 999998;
+  background: #090a12;
+  z-index: 9999999;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  pointer-events: all;
   opacity: 0;
-  animation: overlayFadeIn 0.3s forwards ease-out;
+  animation: overlayFadeIn 0.25s forwards ease-out;
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .theme-transition-overlay.target-light {
-  background: rgba(248, 250, 252, 0.96);
+  background: #f8fafc;
 }
 
 .theme-transition-overlay.exiting {
