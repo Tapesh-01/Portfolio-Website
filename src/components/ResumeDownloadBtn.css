@@ -1,239 +1,136 @@
-/* === Uiverse Download/Open Morphing Button (By nazar-gavrylyk) === */
-.uiverse-dl-container {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: var(--font-heading, sans-serif);
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
-}
-
-.uiverse-dl-label {
-  background-color: transparent;
-  border: 2px solid var(--dl-border, rgb(91, 91, 240));
-  display: flex;
-  align-items: center;
-  border-radius: 50px;
-  width: 165px;
-  height: 48px;
+﻿/* From Uiverse.io by d3uceY */ 
+.download-btn {
+  height: 45px;
+  width: 95px;
   cursor: pointer;
-  transition: all 0.4s ease;
-  padding: 4px;
+  background: white;
+  border: none;
+  background: #ff0021;
+  border-radius: 30px;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  outline: none;
+  user-select: none;
   position: relative;
-  box-sizing: border-box;
 }
 
-.uiverse-dl-label::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #fff;
-  width: 8px;
-  height: 8px;
-  transition: all 0.4s ease;
-  border-radius: 100%;
-  margin: auto;
-  opacity: 0;
-  visibility: hidden;
+.button-content {
+  transform: translateY(-45px);
+  transition: all 250ms ease-in-out;
+  width: 100%;
 }
 
-.uiverse-dl-label .uiverse-dl-input {
-  display: none;
-}
-
-.uiverse-dl-label .uiverse-dl-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: #ffffff;
-  transition: all 0.4s ease;
-  position: absolute;
-  right: 18px;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: 0;
-  text-align: center;
-  letter-spacing: 0.03em;
-}
-
-.uiverse-dl-label .uiverse-dl-title:last-child {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.uiverse-dl-label .uiverse-dl-circle {
-  height: 38px;
-  width: 38px;
-  border-radius: 50%;
-  background-color: var(--dl-circle-bg, rgb(91, 91, 240));
+.svg-container,
+.text-container {
+  height: 45px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.4s ease;
-  position: relative;
-  box-shadow: 0 0 0 0 rgb(255, 255, 255);
-  overflow: hidden;
-  flex-shrink: 0;
 }
 
-.uiverse-dl-label .uiverse-dl-circle .uiverse-dl-icon {
-  color: #ffffff;
-  width: 22px;
-  height: 22px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 0.4s ease;
-}
-
-.uiverse-dl-label .uiverse-dl-circle .uiverse-dl-square {
-  aspect-ratio: 1;
-  width: 12px;
-  border-radius: 2px;
-  background-color: #ffffff;
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 0.4s ease;
-}
-
-.uiverse-dl-label .uiverse-dl-circle::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  background-color: var(--dl-fill-bg, #3333a8);
-  width: 100%;
-  height: 0;
-  transition: all 0.4s ease;
-}
-
-/* Checked / Downloading State */
-.uiverse-dl-label:has(.uiverse-dl-input:checked) {
-  width: 48px;
-  animation: uiverse-dl-installed 0.4s ease 3.2s forwards;
-}
-
-.uiverse-dl-label:has(.uiverse-dl-input:checked)::before {
-  animation: uiverse-dl-rotate 2.8s ease-in-out 0.4s forwards;
-}
-
-.uiverse-dl-label .uiverse-dl-input:checked + .uiverse-dl-circle {
-  animation:
-    uiverse-dl-pulse 1s forwards,
-    uiverse-dl-circleDelete 0.2s ease 3.2s forwards;
-  rotate: 180deg;
-}
-
-.uiverse-dl-label .uiverse-dl-input:checked + .uiverse-dl-circle::before {
-  animation: uiverse-dl-installing 2.8s ease-in-out forwards;
-}
-
-.uiverse-dl-label .uiverse-dl-input:checked + .uiverse-dl-circle .uiverse-dl-icon {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.uiverse-dl-label .uiverse-dl-input:checked ~ .uiverse-dl-circle .uiverse-dl-square {
+.text-container .text {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 600;
   opacity: 1;
-  visibility: visible;
+  transition: opacity ease-in-out 250ms;
 }
 
-.uiverse-dl-label .uiverse-dl-input:checked ~ .uiverse-dl-title {
+.download-icon {
+  height: 25px;
+  width: 25px;
+  fill: #fff;
   opacity: 0;
-  visibility: hidden;
+  transition: opacity ease-in-out 250ms;
 }
 
-.uiverse-dl-label .uiverse-dl-input:checked ~ .uiverse-dl-title:last-child {
-  animation: uiverse-dl-showInstalledMessage 0.4s ease 3.2s forwards;
+/* hover state for the button */
+.download-btn:hover .button-content {
+  transform: translateY(0px);
 }
 
-@keyframes uiverse-dl-pulse {
-  0% {
-    scale: 0.95;
-    box-shadow: 0 0 0 0 rgba(91, 91, 240, 0.7);
-  }
-  70% {
-    scale: 1;
-    box-shadow: 0 0 0 16px rgba(91, 91, 240, 0);
-  }
-  100% {
-    scale: 0.95;
-    box-shadow: 0 0 0 0 rgba(91, 91, 240, 0);
-  }
+.download-btn:hover .text {
+  opacity: 0;
 }
 
-@keyframes uiverse-dl-installing {
+.download-btn:hover .download-icon {
+  opacity: 1;
+}
+
+.download-btn:focus .download-icon {
+  -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+  animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+@-webkit-keyframes heartbeat {
   from {
-    height: 0;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
   }
-  to {
-    height: 100%;
+  10% {
+    -webkit-transform: scale(0.91);
+    transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
   }
-}
-
-@keyframes uiverse-dl-rotate {
-  0% {
-    transform: rotate(-90deg) translate(22px) rotate(0);
-    opacity: 1;
-    visibility: visible;
+  17% {
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
   }
-  99% {
-    transform: rotate(270deg) translate(22px) rotate(270deg);
-    opacity: 1;
-    visibility: visible;
+  33% {
+    -webkit-transform: scale(0.87);
+    transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
   }
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-@keyframes uiverse-dl-installed {
-  100% {
-    width: 145px;
-    border-color: var(--dl-installed-border, rgb(35, 174, 35));
-    background: var(--dl-installed-bg, rgba(35, 174, 35, 0.08));
-  }
-}
-
-@keyframes uiverse-dl-circleDelete {
-  100% {
-    opacity: 0;
-    visibility: hidden;
+  45% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
   }
 }
-
-@keyframes uiverse-dl-showInstalledMessage {
-  100% {
-    opacity: 1;
-    visibility: visible;
-    right: 50%;
-    transform: translate(50%, -50%);
-    color: var(--dl-installed-text, rgb(35, 174, 35));
+@keyframes heartbeat {
+  from {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
   }
-}
-
-/* === Light Theme Overrides === */
-[data-theme="light"] .uiverse-dl-label {
-  border-color: #16a34a;
-  background: rgba(22, 163, 74, 0.04);
-  --dl-border: #16a34a;
-  --dl-circle-bg: #16a34a;
-  --dl-fill-bg: #15803d;
-  --dl-installed-border: #16a34a;
-  --dl-installed-bg: rgba(22, 163, 74, 0.1);
-  --dl-installed-text: #16a34a;
-}
-
-[data-theme="light"] .uiverse-dl-label .uiverse-dl-title {
-  color: #0f172a;
+  10% {
+    -webkit-transform: scale(0.91);
+    transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  17% {
+    -webkit-transform: scale(0.98);
+    transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(0.87);
+    transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  45% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
 }
