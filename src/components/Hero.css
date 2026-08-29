@@ -792,6 +792,12 @@
   background-color: #ffa116;
 }
 
+.example-2 .icon-content a[data-social="email"] .filled,
+.example-2 .icon-content a[data-social="email"] ~ .tooltip {
+  background-color: #24262a;
+  color: #ffffff;
+}
+
 /* === Hanging Spider Switcher === */
 .center {
   position: absolute;

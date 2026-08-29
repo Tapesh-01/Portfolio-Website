@@ -79,12 +79,21 @@ export default function SpotlightLounge() {
             </a>
           </div>
 
-          {/* Email / Direct Message Spotlight */}
+          {/* Email / Contact Form Navigation */}
           <div className="light-button spotlight-email">
             <a
-              href="mailto:tapeshkarkel@gmail.com"
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: 'smooth' });
+                  const firstInput = contactSection.querySelector('input[name="name"], input');
+                  if (firstInput) setTimeout(() => firstInput.focus(), 600);
+                }
+              }}
               className="bt"
-              aria-label="Direct Email"
+              aria-label="Send Message / Contact Form"
             >
               <div className="light-holder">
                 <div className="dot"></div>
