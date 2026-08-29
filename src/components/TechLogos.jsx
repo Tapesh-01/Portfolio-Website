@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 
 // === High-Definition Pixel-Perfect Vector Stickers (Transparent Backgrounds) ===
 
@@ -33,7 +33,7 @@ export const NodeLogo = ({ size = 22 }) => (
 // 4. Express (Minimalist Ex Wordmark Badge)
 export const ExpressLogo = ({ size = 22 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="24" height="24" rx="5" fill="#ffffff"/>
+    <rect width="24" height="24" rx="5" fill="#ffffff" stroke="rgba(0,0,0,0.2)" strokeWidth="1"/>
     <text x="12" y="16.5" fontSize="11.5" fontWeight="900" fontFamily="sans-serif" textAnchor="middle" fill="#090a0f">ex</text>
   </svg>
 );
@@ -131,18 +131,27 @@ export const ViteLogo = ({ size = 22 }) => (
   </svg>
 );
 
-// 14. Git & GitHub (Combined Diamond Git & GitHub Octocat Badge)
+// 0. C Programming (Royal Blue Hexagonal Shield)
+export const CLogo = ({ size = 22 }) => (
+  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 2L3 9.5V22.5L16 30L29 22.5V9.5L16 2Z" fill="#00599C"/>
+    <path d="M16 4.5L5.5 10.8V21.2L16 27.5L26.5 21.2V10.8L16 4.5Z" fill="#004482"/>
+    <text x="16" y="21.5" fontSize="15" fontWeight="900" fontFamily="sans-serif" textAnchor="middle" fill="#ffffff">C</text>
+  </svg>
+);
+
+// 14. Git (Orange Diamond with Branch Nodes)
 export const GitLogo = ({ size = 22 }) => (
-  <svg width={size} height={size} viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Git Diamond */}
-    <g transform="translate(-1, 0)">
-      <path d="M13.7 3.6L6.4 10.9C5.6 11.7 5.6 12.9 6.4 13.7L13.7 21C14.5 21.8 15.7 21.8 16.5 21L18.4 19.1L15.8 16.5C15.2 16.7 14.4 16.5 14 16C13.5 15.5 13.3 14.8 13.5 14.2L11.3 12C10.7 12.2 10 12 9.5 11.5C8.8 10.8 8.8 9.7 9.5 9C10.2 8.3 11.3 8.3 12 9C12.5 9.5 12.7 10.2 12.5 10.8L14.6 12.9V7.8C14.4 7.6 14.3 7.3 14.3 7C14.3 6.2 15 5.5 15.8 5.5C16.6 5.5 17.3 6.2 17.3 7C17.3 7.6 16.9 8.1 16.4 8.4V13.6C16.9 13.9 17.3 14.4 17.3 15C17.3 15.6 17 16.1 16.6 16.4L19.2 19C19.7 18.5 20.7 17.5 20.7 17.5L16.5 3.6C15.7 2.8 14.5 2.8 13.7 3.6Z" fill="#F05032"/>
-    </g>
-    {/* GitHub Circle */}
-    <g transform="translate(14, 2)">
-      <circle cx="6" cy="6" r="6" fill="#181717" stroke="rgba(255,255,255,0.2)" strokeWidth="0.8"/>
-      <path d="M6 1.5C3.5 1.5 1.5 3.5 1.5 6C1.5 8 2.8 9.7 4.6 10.3C4.8 10.3 4.9 10.2 4.9 10.1V8.9C3.6 9.2 3.3 8.3 3.3 8.3C3.1 7.8 2.8 7.7 2.8 7.7C2.4 7.4 2.8 7.4 2.8 7.4C3.2 7.4 3.5 7.8 3.5 7.8C3.9 8.5 4.6 8.3 4.9 8.1C4.9 7.8 5 7.6 5.2 7.5C4.2 7.4 3.1 7 3.1 5.3C3.1 4.8 3.3 4.4 3.6 4.1C3.5 4 3.4 3.5 3.7 2.9C3.7 2.9 4.1 2.8 5 3.4C5.4 3.3 5.8 3.2 6.2 3.2C6.6 3.2 7 3.3 7.4 3.4C8.3 2.8 8.7 2.9 8.7 2.9C9 3.5 8.9 4 8.8 4.1C9.1 4.4 9.3 4.8 9.3 5.3C9.3 7 8.2 7.4 7.2 7.5C7.4 7.7 7.6 8 7.6 8.5V10.1C7.6 10.2 7.7 10.3 7.9 10.3C9.7 9.7 11 8 11 6C11 3.5 9 1.5 6 1.5Z" fill="#ffffff"/>
-    </g>
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M13.7 3.6L6.4 10.9C5.6 11.7 5.6 12.9 6.4 13.7L13.7 21C14.5 21.8 15.7 21.8 16.5 21L18.4 19.1L15.8 16.5C15.2 16.7 14.4 16.5 14 16C13.5 15.5 13.3 14.8 13.5 14.2L11.3 12C10.7 12.2 10 12 9.5 11.5C8.8 10.8 8.8 9.7 9.5 9C10.2 8.3 11.3 8.3 12 9C12.5 9.5 12.7 10.2 12.5 10.8L14.6 12.9V7.8C14.4 7.6 14.3 7.3 14.3 7C14.3 6.2 15 5.5 15.8 5.5C16.6 5.5 17.3 6.2 17.3 7C17.3 7.6 16.9 8.1 16.4 8.4V13.6C16.9 13.9 17.3 14.4 17.3 15C17.3 15.6 17 16.1 16.6 16.4L19.2 19C19.7 18.5 20.7 17.5 20.7 17.5L16.5 3.6C15.7 2.8 14.5 2.8 13.7 3.6Z" fill="#F05032"/>
+  </svg>
+);
+
+// 14B. GitHub (Official Octocat Badge)
+export const GitHubLogo = ({ size = 22 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="11" fill="#181717" stroke="rgba(255,255,255,0.2)" strokeWidth="1.2"/>
+    <path d="M12 4C7.58 4 4 7.58 4 12C4 15.54 6.29 18.53 9.47 19.59C9.87 19.66 10.02 19.42 10.02 19.21V17.8C7.8 18.28 7.33 16.73 7.33 16.73C6.97 15.82 6.45 15.57 6.45 15.57C5.72 15.07 6.51 15.08 6.51 15.08C7.32 15.14 7.74 15.91 7.74 15.91C8.45 17.13 9.61 16.78 10.07 16.57C10.14 16.05 10.35 15.7 10.58 15.5C8.81 15.3 6.94 14.62 6.94 11.58C6.94 10.71 7.25 10 7.76 9.45C7.68 9.25 7.41 8.44 7.84 7.35C7.84 7.35 8.51 7.14 10.03 8.17C10.67 7.99 11.34 7.9 12.01 7.9C12.68 7.9 13.35 7.99 13.99 8.17C15.51 7.14 16.18 7.35 16.18 7.35C16.61 8.44 16.34 9.25 16.26 9.45C16.77 10 17.08 10.71 17.08 11.58C17.08 14.63 15.2 15.3 13.42 15.5C13.71 15.75 13.97 16.24 13.97 17V19.21C13.97 19.42 14.12 19.67 14.53 19.59C17.71 18.52 20 15.54 20 12C20 7.58 16.42 4 12 4Z" fill="#ffffff"/>
   </svg>
 );
 

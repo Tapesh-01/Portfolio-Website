@@ -9,7 +9,7 @@ export default function SpotlightLounge() {
       <div className="spotlight-lounge-wrapper">
         <div className="spotlight-lounge-title">
           <Sparkles size={18} style={{ color: 'var(--accent-cyan)' }} />
-          <span>Spotlight Profiles</span>
+          <span>Profiles</span>
         </div>
 
         <div className="spotlight-lounge-grid">

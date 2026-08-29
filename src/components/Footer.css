@@ -46,16 +46,18 @@
   width: 100%;
   overflow: hidden;
   display: flex;
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  padding: 16px 0;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
 
 .tech-marquee-track {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.1rem;
   width: max-content;
-  animation: techMarqueeScroll 35s linear infinite;
+  padding: 8px 0;
+  animation: techMarqueeScroll 42s linear infinite;
 }
 
 .footer-tech-marquee:hover .tech-marquee-track {
@@ -66,18 +68,18 @@
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-  padding: 0.5rem 1.25rem;
+  padding: 0.55rem 1.25rem;
   border-radius: 50px;
-  background: linear-gradient(135deg, rgba(23, 27, 44, 0.9) 0%, rgba(13, 16, 28, 0.95) 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(135deg, rgba(23, 27, 44, 0.94) 0%, rgba(13, 16, 28, 0.98) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
   color: #ffffff;
   font-size: 0.88rem;
   font-weight: 700;
   font-family: var(--font-mono);
   letter-spacing: -0.01em;
   white-space: nowrap;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
   user-select: none;
 }
@@ -89,7 +91,7 @@
   width: 22px;
   height: 22px;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s ease;
 }
 
 .tech-ribbon-badge .tech-name {
@@ -99,12 +101,12 @@
 
 .tech-ribbon-badge:hover {
   border-color: var(--tech-color, var(--accent-cyan));
-  box-shadow: 0 8px 24px var(--tech-glow, rgba(0, 240, 255, 0.45)), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 6px 20px var(--tech-glow, rgba(0, 240, 255, 0.45)), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
 }
 
 .tech-ribbon-badge:hover .tech-icon {
-  transform: scale(1.2) rotate(4deg);
+  transform: scale(1.15) rotate(3deg);
 }
 
 @keyframes techMarqueeScroll {
@@ -142,27 +144,49 @@
 /* === Light Theme Overrides === */
 [data-theme="light"] .portfolio-footer {
   background: #f8fafc;
-  border-top-color: rgba(15, 23, 42, 0.1);
+  border-top-color: rgba(15, 23, 42, 0.12);
 }
 
 [data-theme="light"] .footer-tech-ribbon-container {
-  background: #ffffff;
+  background: #f1f5f9;
   border-bottom-color: rgba(15, 23, 42, 0.08);
 }
 
 [data-theme="light"] .ribbon-label {
-  background: rgba(22, 163, 74, 0.08);
-  border-color: rgba(22, 163, 74, 0.25);
-  color: #16a34a;
+  background: rgba(22, 163, 74, 0.1);
+  border-color: rgba(22, 163, 74, 0.3);
+  color: #15803d;
+  font-weight: 800;
 }
 
 [data-theme="light"] .label-icon {
-  color: #16a34a;
+  color: #15803d;
 }
 
 [data-theme="light"] .tech-ribbon-badge {
-  background: #ffffff;
-  border-color: rgba(15, 23, 42, 0.1);
+  background: #ffffff !important;
+  border: 1.5px solid rgba(15, 23, 42, 0.16) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-theme="light"] .tech-ribbon-badge .tech-name {
+  color: #0f172a !important;
+  font-weight: 700;
+}
+
+[data-theme="light"] .tech-ribbon-badge:hover {
+  background: #ffffff !important;
+  border-color: var(--tech-color, #16a34a) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14) !important;
+  transform: translateY(-2px);
+}
+
+[data-theme="light"] .copyright-text {
   color: #1e293b;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  font-weight: 600;
+}
+
+[data-theme="light"] .built-with-text {
+  color: #64748b;
+  font-weight: 500;
 }
