@@ -5,13 +5,26 @@ export default function ThemeTransition({ targetTheme, onComplete }) {
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
-    // 1. Completely lock body and html scrolling during transition
+    // 1. Play squeaking hamster sound effect
+    let audioInstance = null;
+    try {
+      audioInstance = new Audio('/hamster-sound.mp3');
+      audioInstance.volume = 0.7;
+      audioInstance.play().catch((err) => {
+        // Autoplay may be restricted if user hasn't interacted, but click interaction guarantees playback
+        console.log('Audio playback info:', err);
+      });
+    } catch (err) {
+      console.warn('Audio error:', err);
+    }
+
+    // 2. Completely lock body and html scrolling during transition
     const originalBodyOverflow = document.body.style.overflow;
     const originalHtmlOverflow = document.documentElement.style.overflow;
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
 
-    // 2. Hamster running animation then smooth exit
+    // 3. Hamster running animation then smooth exit
     const timer = setTimeout(() => {
       setExiting(true);
       const finishTimer = setTimeout(() => {
@@ -24,6 +37,10 @@ export default function ThemeTransition({ targetTheme, onComplete }) {
 
     return () => {
       clearTimeout(timer);
+      if (audioInstance) {
+        audioInstance.pause();
+        audioInstance.currentTime = 0;
+      }
       document.body.style.overflow = originalBodyOverflow;
       document.documentElement.style.overflow = originalHtmlOverflow;
     };
