@@ -1,5 +1,5 @@
 import React from 'react';
-import { GraduationCap, Calendar, Award, BookOpen } from 'lucide-react';
+import { GraduationCap, Calendar, Award, BookOpen, Layers, Sparkles } from 'lucide-react';
 import avatarImg from '../assets/profile.jpg';
 import bitLogo from '../assets/bit_logo.png';
 import cgbseLogo from '../assets/cgbse_logo.png';
@@ -68,26 +68,36 @@ export default function About() {
               </div>
 
               <div className="about-text-col glass-panel">
-                <h3>Professional Summary</h3>
-                <p>
-                  I am a dedicated Computer Science student with a strong foundation in web development, IoT systems, and practical software design. My passion lies in constructing user-centric, responsive applications that bridge the gap between digital software interfaces and physical IoT hardware.
+                <div className="summary-header-badge">
+                  <span className="summary-pill">// CORE PROFILE</span>
+                  <h3>Professional Summary</h3>
+                </div>
+
+                <p className="summary-lead">
+                  Hi, I'm <strong className="highlight-name">Tapesh</strong> — a <strong>Full-Stack Developer</strong> passionate about building scalable web and cross-platform mobile architectures.
                 </p>
-                <p>
-                  Currently expanding my capabilities in full-stack engineering, I enjoy building scalable architectures, integrating AI-driven features (like Gemini API integrations), and tackling real-world problem statements through clean, structured code.
+
+                <p className="summary-body">
+                  I specialize in the <strong>MERN ecosystem</strong> (<span className="tech-inline">React.js</span>, <span className="tech-inline">Node.js</span>, <span className="tech-inline">Express.js</span>, <span className="tech-inline">MongoDB</span>), <strong>React Native (Expo)</strong>, and modern JavaScript.
                 </p>
+
+                <p className="summary-body">
+                  With hands-on experience in developing real-time multi-role systems using <strong>Socket.io</strong>, integrating <strong>Gemini AI</strong> capabilities, and configuring enterprise ERP workflows, I focus on writing clean, high-performance code backed by strong fundamentals in <strong>Java</strong>, <strong>DSA</strong>, and <strong>REST APIs</strong>.
+                </p>
+
                 <div className="summary-highlights">
                   <div className="highlight-item">
-                    <Award className="highlight-icon" />
+                    <Layers className="highlight-icon" size={22} />
                     <div>
-                      <h4>Full Stack Development</h4>
-                      <p>Node.js, React, Express, MongoDB</p>
+                      <h4>Full-Stack & Mobile Ecosystem</h4>
+                      <p>MERN Stack, React Native (Expo) & REST APIs</p>
                     </div>
                   </div>
                   <div className="highlight-item">
-                    <BookOpen className="highlight-icon" />
+                    <Sparkles className="highlight-icon" size={22} />
                     <div>
-                      <h4>IoT Solutions</h4>
-                      <p>Sensors, microcontrollers, automated actions</p>
+                      <h4>Real-Time & AI Systems</h4>
+                      <p>Socket.io, Gemini AI & Java DSA Fundamentals</p>
                     </div>
                   </div>
                 </div>
