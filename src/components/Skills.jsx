@@ -1,38 +1,34 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Code2, Smartphone, Cpu, Cloud, Sparkles } from 'lucide-react';
+import { Code2, Smartphone, Cpu, Cloud, Terminal, Globe } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 import './Skills.css';
 
-const SKILL_CATEGORIES = [
-  {
-    title: 'Programming Languages',
-    skills: [
-      { name: 'JavaScript', level: 90 },
-      { name: 'TypeScript', level: 85 },
-      { name: 'Java', level: 80 },
-      { name: 'SQL', level: 80 },
-      { name: 'C Language', level: 75 },
-      { name: 'PHP', level: 70 }
-    ]
-  },
-  {
-    title: 'Web & Mobile Stack',
-    skills: [
-      { name: 'React.js & React Native', level: 88 },
-      { name: 'Node.js & Express', level: 82 },
-      { name: 'MongoDB & Databases', level: 80 },
-      { name: 'HTML5 & CSS3', level: 90 }
-    ]
-  },
-  {
-    title: 'Tools & Cloud Services',
-    skills: [
-      { name: 'Git & GitHub', level: 85 },
-      { name: 'IoT Systems & Sensors', level: 80 },
-      { name: 'Firebase & Supabase', level: 82 },
-      { name: 'Socket.io & WebSockets', level: 78 }
-    ]
-  }
+// ─── Data ──────────────────────────────────────────────────────────────────────
+
+const PROGRAMMING_LANGUAGES = [
+  { name: 'JavaScript', level: 90 },
+  { name: 'TypeScript', level: 85 },
+  { name: 'Java', level: 80 },
+  { name: 'SQL', level: 80 },
+  { name: 'C Language', level: 75 },
+  { name: 'PHP', level: 70 },
+];
+
+const WEB_MOBILE_STACK = [
+  { name: 'React.js & React Native', level: 88 },
+  { name: 'Node.js & Express', level: 82 },
+  { name: 'MongoDB & Databases', level: 80 },
+  { name: 'HTML5 & CSS3', level: 90 },
+  { name: 'REST APIs & JSON', level: 85 },
+];
+
+const CLOUD_TOOLS = [
+  { name: 'Git & GitHub', level: 88 },
+  { name: 'Firebase & Supabase', level: 82 },
+  { name: 'Postman & API Testing', level: 85 },
+  { name: 'Vercel & Deployment', level: 80 },
+  { name: 'Socket.io & WebSockets', level: 78 },
+  { name: 'Linux & CLI Tools', level: 74 },
 ];
 
 const DOMAIN_CARDS = [
@@ -42,7 +38,7 @@ const DOMAIN_CARDS = [
     badge: 'MERN Stack',
     frontTitle: 'Scalable Web Apps',
     desc: 'Responsive React interfaces, robust Express/Node REST APIs, and MongoDB schemas.',
-    footer: 'React • Node • Express • DB'
+    footer: 'React • Node • Express • DB',
   },
   {
     icon: <Smartphone size={28} />,
@@ -50,7 +46,7 @@ const DOMAIN_CARDS = [
     badge: 'React Native',
     frontTitle: 'Cross-Platform Apps',
     desc: 'Native mobile client with Expo Router, live GPS tracking, and push notifications.',
-    footer: 'Expo Router • Mobile UI'
+    footer: 'Expo Router • Mobile UI',
   },
   {
     icon: <Cpu size={28} />,
@@ -58,7 +54,7 @@ const DOMAIN_CARDS = [
     badge: 'Smart Systems',
     frontTitle: 'Hardware Automation',
     desc: 'Soil moisture telemetry, microcontroller firmware, and automated solenoid valves.',
-    footer: 'ESP32 • Arduino • Sensors'
+    footer: 'ESP32 • Arduino • Sensors',
   },
   {
     icon: <Cloud size={28} />,
@@ -66,39 +62,32 @@ const DOMAIN_CARDS = [
     badge: 'WebSockets',
     frontTitle: 'Real-Time Services',
     desc: 'Socket.io live tracking coordinates, Firebase FCM alerts, and Cloudinary storage.',
-    footer: 'Socket.io • Firebase • Cloud'
-  }
+    footer: 'Socket.io • Firebase • Cloud',
+  },
 ];
 
-// Single Skill Bar with 0 -> Level Animated Counter & Smooth Fill
+// ─── SkillItem: animated progress bar ─────────────────────────────────────────
+
 function SkillItem({ skill, isVisible }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!isVisible) {
-      setCount(0);
-      return;
-    }
+    if (!isVisible) { setCount(0); return; }
 
     let startTime = null;
-    const duration = 1400; // 1.4s count-up duration
-    let animationFrameId;
+    const duration = 1400;
+    let raf;
 
-    const animateCount = (timestamp) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      // Ease out cubic
-      const easeOutProgress = 1 - Math.pow(1 - progress, 3);
-      const currentVal = Math.round(easeOutProgress * skill.level);
-      setCount(currentVal);
-
-      if (progress < 1) {
-        animationFrameId = requestAnimationFrame(animateCount);
-      }
+    const animate = (ts) => {
+      if (!startTime) startTime = ts;
+      const progress = Math.min((ts - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * skill.level));
+      if (progress < 1) raf = requestAnimationFrame(animate);
     };
 
-    animationFrameId = requestAnimationFrame(animateCount);
-    return () => cancelAnimationFrame(animationFrameId);
+    raf = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(raf);
   }, [isVisible, skill.level]);
 
   return (
@@ -108,44 +97,39 @@ function SkillItem({ skill, isVisible }) {
         <span className="skill-percentage">{count}%</span>
       </div>
       <div className="skill-bar-track">
-        <div 
-          className="skill-bar-fill" 
-          style={{ width: isVisible ? `${skill.level}%` : '0%' }}
-        />
+        <div className="skill-bar-fill" style={{ width: isVisible ? `${skill.level}%` : '0%' }} />
       </div>
     </div>
   );
 }
 
-// Category Box with Scroll Trigger
-function SkillCategory({ category, catIdx }) {
+// ─── SkillCategoryCard: individual card per category ──────────────────────────
+
+function SkillCategoryCard({ title, icon: Icon, skills, delay = 0 }) {
   const [isVisible, setIsVisible] = useState(false);
-  const categoryRef = useRef(null);
+  const ref = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.25 }
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+      { threshold: 0.2 }
     );
-
-    if (categoryRef.current) {
-      observer.observe(categoryRef.current);
-    }
-
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <ScrollReveal delay={Math.min(catIdx * 0.1, 0.4)}>
-      <div ref={categoryRef} className="skills-category glass-panel">
-        <h3>{category.title}</h3>
-        <div className="skills-items">
-          {category.skills.map((skill, skillIdx) => (
-            <SkillItem key={skillIdx} skill={skill} isVisible={isVisible} />
+    <ScrollReveal delay={delay}>
+      <div ref={ref} className="skill-category-card glass-panel">
+        <div className="scc-header">
+          <div className="scc-icon-box">
+            <Icon size={20} />
+          </div>
+          <h3 className="scc-title">{title}</h3>
+        </div>
+        <div className="skill-items-list">
+          {skills.map((skill, i) => (
+            <SkillItem key={i} skill={skill} isVisible={isVisible} />
           ))}
         </div>
       </div>
@@ -153,10 +137,14 @@ function SkillCategory({ category, catIdx }) {
   );
 }
 
+// ─── Main Skills Component ─────────────────────────────────────────────────────
+
 export default function Skills() {
   return (
     <section id="skills" className="skills-section section">
       <div className="skills-container container">
+
+        {/* Section Header */}
         <ScrollReveal>
           <div className="section-header">
             <span className="section-eyebrow">// 02. TECHNICAL ARSENAL</span>
@@ -166,49 +154,67 @@ export default function Skills() {
             </p>
           </div>
         </ScrollReveal>
-        
-        <div className="skills-content">
-          {/* Left Column: Proficiency Bars */}
-          <div className="skills-lists">
-            {SKILL_CATEGORIES.map((category, catIdx) => (
-              <SkillCategory key={catIdx} category={category} catIdx={catIdx} />
-            ))}
-          </div>
 
-          {/* Right Column: Uiverse 3D 180deg Flip Domain Cards with Rotating Neon Borders */}
-          <div className="skills-specializations">
-            <ScrollReveal delay={0.2}>
-              <div className="specializations-header">
-                <h3>Core Specializations</h3>
-              </div>
+        {/* ── Row 1: 3 Individual Skill Category Cards ── */}
+        <div className="skill-cards-grid">
+          <SkillCategoryCard
+            title="Programming Languages"
+            icon={Terminal}
+            skills={PROGRAMMING_LANGUAGES}
+            delay={0.1}
+          />
+          <SkillCategoryCard
+            title="Web & Mobile Stack"
+            icon={Globe}
+            skills={WEB_MOBILE_STACK}
+            delay={0.2}
+          />
+          <SkillCategoryCard
+            title="Cloud & Tools"
+            icon={Cloud}
+            skills={CLOUD_TOOLS}
+            delay={0.3}
+          />
+        </div>
 
-              <div className="domain-cards-grid">
-                {DOMAIN_CARDS.map((card, idx) => (
-                  <div key={idx} className="flip-card">
-                    <div className="flip-card-inner">
-                      {/* Front of Card */}
-                      <div className="flip-card-front">
-                        <div className="fc-icon-wrapper">
-                          {card.icon}
-                        </div>
-                        <p className="title">{card.title}</p>
+        {/* ── Row 2: Core Specialization Flip Cards ── */}
+        <ScrollReveal delay={0.15}>
+          <div className="specializations-section">
+            <div className="specializations-header">
+              <h3>Core Specializations</h3>
+              <p>Hover to flip each card and explore what I build</p>
+            </div>
+
+            <div className="domain-cards-grid">
+              {DOMAIN_CARDS.map((card, idx) => (
+                <div key={idx} className="flip-card">
+                  <div className="flip-card-inner">
+                    {/* Front */}
+                    <div className="flip-card-front">
+                      <div className="fc-icon-wrapper">
+                        {card.icon}
                       </div>
+                      <p className="title">{card.title}</p>
+                    </div>
 
-                      {/* Back of Card */}
-                      <div className="flip-card-back">
-                        <span className="fc-badge">{card.badge}</span>
-                        <p className="title fc-back-title">{card.frontTitle}</p>
-                        <p className="fc-desc">{card.desc}</p>
-                        <span className="fc-footer">{card.footer}</span>
-                      </div>
+                    {/* Back */}
+                    <div className="flip-card-back">
+                      <span className="fc-badge">{card.badge}</span>
+                      <p className="title fc-back-title">{card.frontTitle}</p>
+                      <p className="fc-desc">{card.desc}</p>
+                      <span className="fc-footer">{card.footer}</span>
                     </div>
                   </div>
-                ))}
-              </div>
-            </ScrollReveal>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
+
       </div>
     </section>
   );
 }
+
+
+
