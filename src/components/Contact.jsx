@@ -76,71 +76,55 @@ export default function Contact() {
         </ScrollReveal>
 
         <div className="contact-content">
-          {/* Contact Details Card with Profile Photo */}
+          {/* Contact Details Card with Profile Photo Background */}
           <ScrollReveal delay={0.1}>
             <div className="contact-info glass-panel">
-              {/* Profile Header */}
-              <div className="contact-profile-card">
-                <div className="contact-avatar-container">
-                  <div className="contact-avatar-ring">
-                    <img 
-                      src={contactProfileImg} 
-                      alt="Tapesh Kumar Karkel" 
-                      className="contact-avatar-img"
-                    />
-                  </div>
-                  <span className="contact-online-badge" title="Available for opportunities">
-                    <span className="online-ping"></span>
-                    <span className="online-dot"></span>
-                  </span>
-                </div>
-
-                <div className="contact-profile-details">
-                  <div className="contact-status-pill">
-                    <span className="pulse-dot"></span>
-                    <span>Available for Hire</span>
-                  </div>
-                  <h3 className="contact-profile-name">Tapesh Kumar Karkel</h3>
-                  <p className="contact-profile-role">Full-Stack Developer</p>
-                </div>
+              {/* Background Portrait Layer */}
+              <div className="contact-info-bg-layer" aria-hidden="true">
+                <img 
+                  src={contactProfileImg} 
+                  alt="" 
+                  className="contact-info-bg-img"
+                />
+                <div className="contact-info-bg-overlay"></div>
               </div>
 
-              {/* Bio / Message Text */}
-              <div className="contact-intro-text">
-                <h4 className="contact-info-title">Let's Connect</h4>
+              {/* Card Content */}
+              <div className="contact-info-content">
+                <h3>Let's Connect</h3>
                 <p>
                   I am open to internships, freelance roles, or just chatting about computer science and IoT projects! Drop me a line and I will get back to you as soon as possible.
                 </p>
-              </div>
 
-              <div className="contact-details-list">
-                <div className="detail-item">
-                  <div className="detail-icon-box">
-                    <Mail size={18} />
+                <div className="contact-details-list">
+                  <div className="detail-item">
+                    <div className="detail-icon-box">
+                      <Mail size={18} />
+                    </div>
+                    <div className="detail-text">
+                      <span>Email Me</span>
+                      <a href="mailto:tapeshkarkel@gmail.com">tapeshkarkel@gmail.com</a>
+                    </div>
                   </div>
-                  <div className="detail-text">
-                    <span>Email Me</span>
-                    <a href="mailto:tapeshkarkel@gmail.com">tapeshkarkel@gmail.com</a>
-                  </div>
-                </div>
 
-                <div className="detail-item">
-                  <div className="detail-icon-box">
-                    <Phone size={18} />
+                  <div className="detail-item">
+                    <div className="detail-icon-box">
+                      <Phone size={18} />
+                    </div>
+                    <div className="detail-text">
+                      <span>Call Me</span>
+                      <a href="tel:+917067084220">+91 70670 84220</a>
+                    </div>
                   </div>
-                  <div className="detail-text">
-                    <span>Call Me</span>
-                    <a href="tel:+917067084220">+91 70670 84220</a>
-                  </div>
-                </div>
 
-                <div className="detail-item">
-                  <div className="detail-icon-box">
-                    <MapPin size={18} />
-                  </div>
-                  <div className="detail-text">
-                    <span>Location</span>
-                    <p>Bhilai, Chhattisgarh, India</p>
+                  <div className="detail-item">
+                    <div className="detail-icon-box">
+                      <MapPin size={18} />
+                    </div>
+                    <div className="detail-text">
+                      <span>Location</span>
+                      <p>Bhilai, Chhattisgarh, India</p>
+                    </div>
                   </div>
                 </div>
               </div>
