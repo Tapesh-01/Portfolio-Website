@@ -13,10 +13,10 @@ import './Skills.css';
 
 const LANGS = [
   { name: 'JavaScript', icon: JSLogo,     color: '#f7df1e', glow: 'rgba(247,223,30,0.35)',  level: 90 },
-  { name: 'TypeScript', icon: TSLogo,     color: '#3178c6', glow: 'rgba(49,120,198,0.35)',   level: 85 },
+  { name: 'TypeScript', icon: TSLogo,     color: '#3178c6', glow: 'rgba(49,120,198,0.35)',   level: 76 },
   { name: 'Java',       icon: JavaLogo,   color: '#f89820', glow: 'rgba(248,152,32,0.35)',   level: 80 },
-  { name: 'SQL',        icon: SQLLogo,    color: '#38bdf8', glow: 'rgba(56,189,248,0.35)',   level: 80 },
-  { name: 'C Language', icon: CLogo,      color: '#00599c', glow: 'rgba(0,89,156,0.35)',     level: 75 },
+  { name: 'SQL',        icon: SQLLogo,    color: '#38bdf8', glow: 'rgba(56,189,248,0.35)',   level: 75 },
+  { name: 'C Language', icon: CLogo,      color: '#00599c', glow: 'rgba(0,89,156,0.35)',     level: 85 },
   { name: 'Python',     icon: PythonLogo, color: '#3776ab', glow: 'rgba(55,118,171,0.35)',   level: 65 },
 ];
 
