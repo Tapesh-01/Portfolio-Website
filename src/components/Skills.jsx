@@ -13,19 +13,21 @@ import './Skills.css';
 
 const LANGS = [
   { name: 'JavaScript', icon: JSLogo,     color: '#f7df1e', glow: 'rgba(247,223,30,0.35)',  level: 90 },
-  { name: 'TypeScript', icon: TSLogo,     color: '#3178c6', glow: 'rgba(49,120,198,0.35)',   level: 76 },
-  { name: 'Java',       icon: JavaLogo,   color: '#f89820', glow: 'rgba(248,152,32,0.35)',   level: 80 },
-  { name: 'SQL',        icon: SQLLogo,    color: '#38bdf8', glow: 'rgba(56,189,248,0.35)',   level: 75 },
   { name: 'C Language', icon: CLogo,      color: '#00599c', glow: 'rgba(0,89,156,0.35)',     level: 85 },
+  { name: 'Java',       icon: JavaLogo,   color: '#f89820', glow: 'rgba(248,152,32,0.35)',   level: 80 },
+  { name: 'TypeScript', icon: TSLogo,     color: '#3178c6', glow: 'rgba(49,120,198,0.35)',   level: 76 },
+  { name: 'SQL',        icon: SQLLogo,    color: '#38bdf8', glow: 'rgba(56,189,248,0.35)',   level: 75 },
   { name: 'Python',     icon: PythonLogo, color: '#3776ab', glow: 'rgba(55,118,171,0.35)',   level: 65 },
 ];
 
+
 const WEB = [
-  { name: 'React',    icon: ReactLogo,   color: '#00d8ff', glow: 'rgba(0,216,255,0.35)',    level: 88 },
-  { name: 'Node.js',  icon: NodeLogo,    color: '#5fa04e', glow: 'rgba(95,160,78,0.35)',    level: 82 },
-  { name: 'Express',  icon: ExpressLogo, color: '#c8c8c8', glow: 'rgba(200,200,200,0.2)',   level: 82 },
-  { name: 'MongoDB',  icon: MongoLogo,   color: '#13aa52', glow: 'rgba(19,170,82,0.35)',    level: 80 },
-  { name: 'PHP',      icon: null,        color: '#8892be', glow: 'rgba(136,146,190,0.35)',  level: 70, label: 'PHP' },
+  { name: 'React',        icon: ReactLogo,   color: '#00d8ff', glow: 'rgba(0,216,255,0.35)',    level: 88 },
+  { name: 'React Native', icon: ReactLogo,   color: '#38bdf8', glow: 'rgba(56,189,248,0.35)',   level: 82 },
+  { name: 'Node.js',      icon: NodeLogo,    color: '#5fa04e', glow: 'rgba(95,160,78,0.35)',    level: 82 },
+  { name: 'Express',      icon: ExpressLogo, color: '#c8c8c8', glow: 'rgba(200,200,200,0.2)',   level: 80 },
+  { name: 'MongoDB',      icon: MongoLogo,   color: '#13aa52', glow: 'rgba(19,170,82,0.35)',    level: 78 },
+  { name: 'PHP',          icon: null,        color: '#8892be', glow: 'rgba(136,146,190,0.35)',  level: 70, label: 'PHP' },
 ];
 
 const TOOLS = [
@@ -34,7 +36,7 @@ const TOOLS = [
   { name: 'Vite',      icon: ViteLogo,     color: '#bd34fe', glow: 'rgba(189,52,254,0.35)',   level: 85 },
   { name: 'Firebase',  icon: FirebaseLogo, color: '#ffca28', glow: 'rgba(255,202,40,0.35)',   level: 82 },
   { name: 'Supabase',  icon: SupabaseLogo, color: '#3ecf8e', glow: 'rgba(62,207,142,0.35)',   level: 78 },
-  { name: 'Socket.io', icon: SocketLogo,   color: '#00f0ff', glow: 'rgba(0,240,255,0.35)',    level: 78 },
+  { name: 'Socket.io', icon: SocketLogo,   color: '#00f0ff', glow: 'rgba(0,240,255,0.35)',    level: 70 },
 ];
 
 const DOMAIN_CARDS = [
@@ -100,28 +102,31 @@ function SkillCard({ skill, isVisible, index = 0 }) {
         '--sc-color': skill.color,
         '--sc-glow': skill.glow,
         '--skill-level': `${skill.level}%`,
-        '--stagger-delay': `${index * 80}ms`,
-        '--bar-delay': `${index * 80 + 160}ms`,
+        '--stagger-delay': `${index * 70}ms`,
+        '--bar-delay': `${index * 70 + 150}ms`,
       }}
     >
-      {/* Sticker Logo */}
-      <div className="sc-sticker">
-        {Icon ? <Icon size={32} /> : <PHPFallback size={32} />}
-      </div>
-
-      {/* Name + Level label */}
-      <div className="sc-meta">
-        <span className="sc-name">{skill.name}</span>
+      {/* Top Row: Sticker Logo (left) + Level Badge (right) */}
+      <div className="sc-top-row">
+        <div className="sc-sticker">
+          {Icon ? <Icon size={28} /> : <PHPFallback size={28} />}
+        </div>
         <span className={`sc-level-badge ${cls}`}>{label}</span>
       </div>
 
-      {/* Progress Bar */}
+      {/* Middle: Full width skill name */}
+      <div className="sc-name-wrap">
+        <span className="sc-name">{skill.name}</span>
+      </div>
+
+      {/* Bottom: Animated Progress Bar */}
       <div className="sc-bar-track">
         <div className="sc-bar-fill" />
       </div>
     </div>
   );
 }
+
 
 // ─── Skill Group (heading + grid of individual cards) ─────────────────────────
 
