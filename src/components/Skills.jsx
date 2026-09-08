@@ -1,34 +1,40 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Code2, Smartphone, Cpu, Cloud, Terminal, Globe } from 'lucide-react';
+import { Code2, Smartphone, Cpu, Cloud } from 'lucide-react';
+import {
+  CLogo, ReactLogo, NodeLogo, ExpressLogo, MongoLogo,
+  TSLogo, JSLogo, JavaLogo, SocketLogo, FirebaseLogo,
+  SupabaseLogo, ViteLogo, GitLogo, GitHubLogo, SQLLogo,
+  PythonLogo
+} from './TechLogos';
 import ScrollReveal from './ScrollReveal';
 import './Skills.css';
 
-// ─── Data ──────────────────────────────────────────────────────────────────────
+// ─── Individual Skill Data (each is its own card) ─────────────────────────────
 
-const PROGRAMMING_LANGUAGES = [
-  { name: 'JavaScript', level: 90 },
-  { name: 'TypeScript', level: 85 },
-  { name: 'Java', level: 80 },
-  { name: 'SQL', level: 80 },
-  { name: 'C Language', level: 75 },
-  { name: 'PHP', level: 70 },
+const LANGS = [
+  { name: 'JavaScript', icon: JSLogo,     color: '#f7df1e', glow: 'rgba(247,223,30,0.35)',  level: 90 },
+  { name: 'TypeScript', icon: TSLogo,     color: '#3178c6', glow: 'rgba(49,120,198,0.35)',   level: 85 },
+  { name: 'Java',       icon: JavaLogo,   color: '#f89820', glow: 'rgba(248,152,32,0.35)',   level: 80 },
+  { name: 'SQL',        icon: SQLLogo,    color: '#38bdf8', glow: 'rgba(56,189,248,0.35)',   level: 80 },
+  { name: 'C Language', icon: CLogo,      color: '#00599c', glow: 'rgba(0,89,156,0.35)',     level: 75 },
+  { name: 'Python',     icon: PythonLogo, color: '#3776ab', glow: 'rgba(55,118,171,0.35)',   level: 65 },
 ];
 
-const WEB_MOBILE_STACK = [
-  { name: 'React.js & React Native', level: 88 },
-  { name: 'Node.js & Express', level: 82 },
-  { name: 'MongoDB & Databases', level: 80 },
-  { name: 'HTML5 & CSS3', level: 90 },
-  { name: 'REST APIs & JSON', level: 85 },
+const WEB = [
+  { name: 'React',    icon: ReactLogo,   color: '#00d8ff', glow: 'rgba(0,216,255,0.35)',    level: 88 },
+  { name: 'Node.js',  icon: NodeLogo,    color: '#5fa04e', glow: 'rgba(95,160,78,0.35)',    level: 82 },
+  { name: 'Express',  icon: ExpressLogo, color: '#c8c8c8', glow: 'rgba(200,200,200,0.2)',   level: 82 },
+  { name: 'MongoDB',  icon: MongoLogo,   color: '#13aa52', glow: 'rgba(19,170,82,0.35)',    level: 80 },
+  { name: 'PHP',      icon: null,        color: '#8892be', glow: 'rgba(136,146,190,0.35)',  level: 70, label: 'PHP' },
 ];
 
-const CLOUD_TOOLS = [
-  { name: 'Git & GitHub', level: 88 },
-  { name: 'Firebase & Supabase', level: 82 },
-  { name: 'Postman & API Testing', level: 85 },
-  { name: 'Vercel & Deployment', level: 80 },
-  { name: 'Socket.io & WebSockets', level: 78 },
-  { name: 'Linux & CLI Tools', level: 74 },
+const TOOLS = [
+  { name: 'Git',       icon: GitLogo,      color: '#f05032', glow: 'rgba(240,80,50,0.35)',    level: 88 },
+  { name: 'GitHub',    icon: GitHubLogo,   color: '#e2e8f0', glow: 'rgba(226,232,240,0.2)',   level: 85 },
+  { name: 'Vite',      icon: ViteLogo,     color: '#bd34fe', glow: 'rgba(189,52,254,0.35)',   level: 85 },
+  { name: 'Firebase',  icon: FirebaseLogo, color: '#ffca28', glow: 'rgba(255,202,40,0.35)',   level: 82 },
+  { name: 'Supabase',  icon: SupabaseLogo, color: '#3ecf8e', glow: 'rgba(62,207,142,0.35)',   level: 78 },
+  { name: 'Socket.io', icon: SocketLogo,   color: '#00f0ff', glow: 'rgba(0,240,255,0.35)',    level: 78 },
 ];
 
 const DOMAIN_CARDS = [
@@ -61,58 +67,79 @@ const DOMAIN_CARDS = [
     title: 'Cloud & Real-Time',
     badge: 'WebSockets',
     frontTitle: 'Real-Time Services',
-    desc: 'Socket.io live tracking coordinates, Firebase FCM alerts, and Cloudinary storage.',
+    desc: 'Socket.io live tracking, Firebase FCM alerts, and Cloudinary media storage.',
     footer: 'Socket.io • Firebase • Cloud',
   },
 ];
 
-// ─── SkillItem: animated progress bar ─────────────────────────────────────────
+// ─── PHP fallback SVG (no logo in TechLogos) ──────────────────────────────────
+const PHPFallback = ({ size = 28 }) => (
+  <svg width={size} height={size} viewBox="0 0 32 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="32" height="16" rx="8" fill="#8892be"/>
+    <text x="16" y="12" fontSize="9" fontWeight="900" fontFamily="sans-serif" textAnchor="middle" fill="#fff">PHP</text>
+  </svg>
+);
 
-function SkillItem({ skill, isVisible }) {
+// ─── Individual SkillCard Component ───────────────────────────────────────────
+
+function SkillCard({ skill, isVisible }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (!isVisible) { setCount(0); return; }
-
     let startTime = null;
-    const duration = 1400;
+    const duration = 1300;
     let raf;
-
     const animate = (ts) => {
       if (!startTime) startTime = ts;
-      const progress = Math.min((ts - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
+      const p = Math.min((ts - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
       setCount(Math.round(eased * skill.level));
-      if (progress < 1) raf = requestAnimationFrame(animate);
+      if (p < 1) raf = requestAnimationFrame(animate);
     };
-
     raf = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(raf);
   }, [isVisible, skill.level]);
 
+  const Icon = skill.icon;
+
   return (
-    <div className="skill-item">
-      <div className="skill-info">
-        <span className="skill-name">{skill.name}</span>
-        <span className="skill-percentage">{count}%</span>
+    <div
+      className="sc-card glass-panel"
+      style={{ '--sc-color': skill.color, '--sc-glow': skill.glow }}
+    >
+      {/* Sticker Logo */}
+      <div className="sc-sticker">
+        {Icon ? <Icon size={32} /> : <PHPFallback size={32} />}
       </div>
-      <div className="skill-bar-track">
-        <div className="skill-bar-fill" style={{ width: isVisible ? `${skill.level}%` : '0%' }} />
+
+      {/* Name + % */}
+      <div className="sc-meta">
+        <span className="sc-name">{skill.name}</span>
+        <span className="sc-pct">{count}%</span>
+      </div>
+
+      {/* Progress Bar */}
+      <div className="sc-bar-track">
+        <div
+          className="sc-bar-fill"
+          style={{ width: isVisible ? `${skill.level}%` : '0%' }}
+        />
       </div>
     </div>
   );
 }
 
-// ─── SkillCategoryCard: individual card per category ──────────────────────────
+// ─── Skill Group (heading + grid of individual cards) ─────────────────────────
 
-function SkillCategoryCard({ title, icon: Icon, skills, delay = 0 }) {
+function SkillGroup({ label, skills, delay = 0 }) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -120,16 +147,13 @@ function SkillCategoryCard({ title, icon: Icon, skills, delay = 0 }) {
 
   return (
     <ScrollReveal delay={delay}>
-      <div ref={ref} className="skill-category-card glass-panel">
-        <div className="scc-header">
-          <div className="scc-icon-box">
-            <Icon size={20} />
-          </div>
-          <h3 className="scc-title">{title}</h3>
+      <div ref={ref} className="skill-group">
+        <div className="skill-group-label">
+          <span>{label}</span>
         </div>
-        <div className="skill-items-list">
+        <div className="skill-cards-row">
           {skills.map((skill, i) => (
-            <SkillItem key={i} skill={skill} isVisible={isVisible} />
+            <SkillCard key={i} skill={skill} isVisible={isVisible} />
           ))}
         </div>
       </div>
@@ -155,29 +179,14 @@ export default function Skills() {
           </div>
         </ScrollReveal>
 
-        {/* ── Row 1: 3 Individual Skill Category Cards ── */}
-        <div className="skill-cards-grid">
-          <SkillCategoryCard
-            title="Programming Languages"
-            icon={Terminal}
-            skills={PROGRAMMING_LANGUAGES}
-            delay={0.1}
-          />
-          <SkillCategoryCard
-            title="Web & Mobile Stack"
-            icon={Globe}
-            skills={WEB_MOBILE_STACK}
-            delay={0.2}
-          />
-          <SkillCategoryCard
-            title="Cloud & Tools"
-            icon={Cloud}
-            skills={CLOUD_TOOLS}
-            delay={0.3}
-          />
+        {/* ── Individual Skill Cards, grouped by category ── */}
+        <div className="skills-all-groups">
+          <SkillGroup label="Programming Languages" skills={LANGS}  delay={0.1} />
+          <SkillGroup label="Web & Mobile Stack"    skills={WEB}   delay={0.15} />
+          <SkillGroup label="Cloud & Tools"         skills={TOOLS} delay={0.2} />
         </div>
 
-        {/* ── Row 2: Core Specialization Flip Cards ── */}
+        {/* ── Core Specializations Flip Cards ── */}
         <ScrollReveal delay={0.15}>
           <div className="specializations-section">
             <div className="specializations-header">
@@ -189,15 +198,10 @@ export default function Skills() {
               {DOMAIN_CARDS.map((card, idx) => (
                 <div key={idx} className="flip-card">
                   <div className="flip-card-inner">
-                    {/* Front */}
                     <div className="flip-card-front">
-                      <div className="fc-icon-wrapper">
-                        {card.icon}
-                      </div>
+                      <div className="fc-icon-wrapper">{card.icon}</div>
                       <p className="title">{card.title}</p>
                     </div>
-
-                    {/* Back */}
                     <div className="flip-card-back">
                       <span className="fc-badge">{card.badge}</span>
                       <p className="title fc-back-title">{card.frontTitle}</p>
@@ -215,6 +219,3 @@ export default function Skills() {
     </section>
   );
 }
-
-
-
