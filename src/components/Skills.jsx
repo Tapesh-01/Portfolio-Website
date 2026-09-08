@@ -89,14 +89,20 @@ function getLevelLabel(level) {
 
 // ─── Individual SkillCard Component ───────────────────────────────────────────
 
-function SkillCard({ skill, isVisible }) {
+function SkillCard({ skill, isVisible, index = 0 }) {
   const Icon = skill.icon;
   const { label, cls } = getLevelLabel(skill.level);
 
   return (
     <div
-      className="sc-card glass-panel"
-      style={{ '--sc-color': skill.color, '--sc-glow': skill.glow }}
+      className={`sc-card glass-panel ${isVisible ? 'sc-card-visible' : ''}`}
+      style={{
+        '--sc-color': skill.color,
+        '--sc-glow': skill.glow,
+        '--skill-level': `${skill.level}%`,
+        '--stagger-delay': `${index * 80}ms`,
+        '--bar-delay': `${index * 80 + 160}ms`,
+      }}
     >
       {/* Sticker Logo */}
       <div className="sc-sticker">
@@ -111,10 +117,7 @@ function SkillCard({ skill, isVisible }) {
 
       {/* Progress Bar */}
       <div className="sc-bar-track">
-        <div
-          className="sc-bar-fill"
-          style={{ width: isVisible ? `${skill.level}%` : '0%' }}
-        />
+        <div className="sc-bar-fill" />
       </div>
     </div>
   );
@@ -128,8 +131,12 @@ function SkillGroup({ label, skills, delay = 0 }) {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.15 }
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -143,13 +150,14 @@ function SkillGroup({ label, skills, delay = 0 }) {
         </div>
         <div className="skill-cards-row">
           {skills.map((skill, i) => (
-            <SkillCard key={i} skill={skill} isVisible={isVisible} />
+            <SkillCard key={i} skill={skill} isVisible={isVisible} index={i} />
           ))}
         </div>
       </div>
     </ScrollReveal>
   );
 }
+
 
 // ─── Main Skills Component ─────────────────────────────────────────────────────
 

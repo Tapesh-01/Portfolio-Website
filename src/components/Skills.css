@@ -48,14 +48,27 @@
 .sc-card {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
-  padding: 1rem 1.1rem;
-  width: 155px;
-  flex-shrink: 0;
+  gap: 0.75rem;
+  padding: 1rem 1.15rem;
+  flex: 1 1 165px;
+  max-width: 195px;
+  min-width: 155px;
   position: relative;
   overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
   border: 1px solid rgba(255,255,255,0.07);
+  opacity: 0;
+  transform: translateY(22px) scale(0.96);
+  transition:
+    opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1) var(--stagger-delay, 0ms),
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) var(--stagger-delay, 0ms),
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+  will-change: opacity, transform;
+}
+
+.sc-card.sc-card-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .sc-card::before {
@@ -69,8 +82,8 @@
   pointer-events: none;
 }
 
-.sc-card:hover {
-  transform: translateY(-4px);
+.sc-card.sc-card-visible:hover {
+  transform: translateY(-4px) scale(1.02);
   box-shadow: 0 8px 30px var(--sc-glow, rgba(0,240,255,0.25));
   border-color: var(--sc-color, rgba(0,240,255,0.4));
 }
@@ -78,6 +91,7 @@
 .sc-card:hover::before {
   opacity: 1;
 }
+
 
 .sc-sticker {
   display: flex;
@@ -145,8 +159,13 @@
   border-radius: 10px;
   background: linear-gradient(90deg, var(--sc-color, var(--accent-cyan)), color-mix(in srgb, var(--sc-color, var(--accent-cyan)) 60%, white));
   box-shadow: 0 0 6px var(--sc-glow, rgba(0,240,255,0.4));
-  transition: width 1.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  width: 0%;
+  transition: width 1.3s cubic-bezier(0.16, 1, 0.3, 1) var(--bar-delay, 180ms);
   will-change: width;
+}
+
+.sc-card.sc-card-visible .sc-bar-fill {
+  width: var(--skill-level, 0%);
 }
 
 [data-theme="light"] .sc-card {
