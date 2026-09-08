@@ -80,28 +80,18 @@ const PHPFallback = ({ size = 28 }) => (
   </svg>
 );
 
+// ─── Helper: level → label (Beginner, Intermediate, Advanced) ────────────────
+function getLevelLabel(level) {
+  if (level >= 80) return { label: 'Advanced',     cls: 'lvl-advanced' };
+  if (level >= 72) return { label: 'Intermediate', cls: 'lvl-intermediate' };
+  return           { label: 'Beginner',     cls: 'lvl-beginner' };
+}
+
 // ─── Individual SkillCard Component ───────────────────────────────────────────
 
 function SkillCard({ skill, isVisible }) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!isVisible) { setCount(0); return; }
-    let startTime = null;
-    const duration = 1300;
-    let raf;
-    const animate = (ts) => {
-      if (!startTime) startTime = ts;
-      const p = Math.min((ts - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setCount(Math.round(eased * skill.level));
-      if (p < 1) raf = requestAnimationFrame(animate);
-    };
-    raf = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(raf);
-  }, [isVisible, skill.level]);
-
   const Icon = skill.icon;
+  const { label, cls } = getLevelLabel(skill.level);
 
   return (
     <div
@@ -113,10 +103,10 @@ function SkillCard({ skill, isVisible }) {
         {Icon ? <Icon size={32} /> : <PHPFallback size={32} />}
       </div>
 
-      {/* Name + % */}
+      {/* Name + Level label */}
       <div className="sc-meta">
         <span className="sc-name">{skill.name}</span>
-        <span className="sc-pct">{count}%</span>
+        <span className={`sc-level-badge ${cls}`}>{label}</span>
       </div>
 
       {/* Progress Bar */}

@@ -79,17 +79,17 @@ export default function Contact() {
           {/* Contact Details Card with Profile Photo Background */}
           <ScrollReveal delay={0.1}>
             <div className="contact-info glass-panel">
-
-              {/* LEFT: Profile Photo */}
-              <div className="contact-info-photo-col">
-                <img
-                  src={contactProfileImg}
-                  alt="Tapesh Karkel"
-                  className="contact-info-photo"
+              {/* Background Portrait Layer (Left Side) */}
+              <div className="contact-info-bg-layer" aria-hidden="true">
+                <img 
+                  src={contactProfileImg} 
+                  alt="" 
+                  className="contact-info-bg-img"
                 />
+                <div className="contact-info-bg-overlay"></div>
               </div>
 
-              {/* RIGHT: Details */}
+              {/* Card Content */}
               <div className="contact-info-content">
                 <h3>Let's Connect</h3>
                 <p>
@@ -128,7 +128,6 @@ export default function Contact() {
                   </div>
                 </div>
               </div>
-
             </div>
           </ScrollReveal>
 

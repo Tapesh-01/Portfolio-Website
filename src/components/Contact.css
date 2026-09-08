@@ -1,6 +1,6 @@
 .contact-content {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
+  grid-template-columns: 0.95fr 1.05fr;
   gap: 2.5rem;
   width: 100%;
   margin-top: 2rem;
@@ -9,52 +9,70 @@
 
 .contact-info {
   display: flex;
-  flex-direction: row;
-  align-items: stretch;
+  flex-direction: column;
   background: rgba(17, 19, 30, 0.25);
   text-align: left;
   position: relative;
   overflow: hidden;
+  z-index: 0;
   border-radius: 16px;
   border: 1px solid var(--border-color);
-  padding: 0;
-  gap: 0;
+  padding: 2.5rem;
 }
 
-/* LEFT column: profile photo */
-.contact-info-photo-col {
-  width: 42%;
-  flex-shrink: 0;
-  position: relative;
+/* Background Portrait Layer — positioned on LEFT */
+.contact-info-bg-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
   overflow: hidden;
-  border-radius: 16px 0 0 16px;
+  border-radius: inherit;
 }
 
-.contact-info-photo {
-  width: 100%;
+.contact-info-bg-img {
+  position: absolute;
+  left: -8%;
+  bottom: 0;
+  width: 75%;
   height: 100%;
   object-fit: cover;
-  object-position: center 8%;
-  display: block;
-  filter: brightness(0.92) contrast(1.05);
-  mask-image: linear-gradient(to right, black 55%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, black 55%, transparent 100%);
-  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  object-position: center 10%;
+  opacity: 0.65;
+  filter: contrast(1.05) brightness(0.9);
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease;
+  mask-image: radial-gradient(circle at 25% 45%, black 55%, transparent 88%),
+              linear-gradient(to right, black 40%, transparent 90%);
+  -webkit-mask-image: radial-gradient(circle at 25% 45%, black 55%, transparent 88%),
+                      linear-gradient(to right, black 40%, transparent 90%);
 }
 
-.contact-info:hover .contact-info-photo {
-  transform: scale(1.04);
+.contact-info:hover .contact-info-bg-img {
+  transform: scale(1.03) translateY(-3px);
+  opacity: 0.75;
 }
 
-/* RIGHT column: details */
+.contact-info-bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    to left,
+    rgba(17, 19, 30, 0.96) 0%,
+    rgba(17, 19, 30, 0.82) 45%,
+    rgba(17, 19, 30, 0.3) 75%,
+    rgba(17, 19, 30, 0.05) 100%
+  );
+}
+
+/* Card Content Container */
 .contact-info-content {
-  flex: 1;
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding: 2.5rem 2rem 2.5rem 1.5rem;
-  position: relative;
-  z-index: 1;
+  width: 100%;
 }
 
 
@@ -603,31 +621,36 @@
   color: #0f172a;
 }
 
-/* Contact Info Photo — Light Theme */
-[data-theme="light"] .contact-info-photo {
-  filter: brightness(0.95) contrast(1.02);
+/* Contact Info Background Light Theme */
+[data-theme="light"] .contact-info-bg-img {
+  opacity: 0.45;
+  filter: contrast(1.05) brightness(0.96);
+  mask-image: radial-gradient(circle at 25% 45%, black 55%, transparent 88%),
+              linear-gradient(to right, black 40%, transparent 90%);
+  -webkit-mask-image: radial-gradient(circle at 25% 45%, black 55%, transparent 88%),
+                      linear-gradient(to right, black 40%, transparent 90%);
+}
+
+[data-theme="light"] .contact-info:hover .contact-info-bg-img {
+  opacity: 0.55;
+}
+
+[data-theme="light"] .contact-info-bg-overlay {
+  background: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 0.97) 0%,
+    rgba(255, 255, 255, 0.82) 45%,
+    rgba(255, 255, 255, 0.35) 75%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
 }
 
 [data-theme="light"] .contact-details-list {
   border-top-color: rgba(15, 23, 42, 0.1);
 }
 
-/* ── Contact card responsive ─────────────────────────────── */
-@media (max-width: 768px) {
+@media (max-width: 576px) {
   .contact-info {
-    flex-direction: column;
-  }
-  .contact-info-photo-col {
-    width: 100%;
-    height: 220px;
-    border-radius: 16px 16px 0 0;
-  }
-  .contact-info-photo {
-    object-position: center 15%;
-    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-  }
-  .contact-info-content {
     padding: 1.75rem;
   }
 }
